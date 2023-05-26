@@ -1,0 +1,26 @@
+{
+  "name": "monorepo-validate-1",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "张新",
+  "homepage": "https://github.com/HermitGeek/demo-validate#readme",
+  "license": "ISC",
+  "main": "lib/monorepo-validate-1.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HermitGeek/demo-validate.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/monorepo-validate-1.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/HermitGeek/demo-validate/issues"
+  }
+}
