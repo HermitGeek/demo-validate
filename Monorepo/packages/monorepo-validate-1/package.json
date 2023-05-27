@@ -22,5 +22,8 @@
   },
   "bugs": {
     "url": "https://github.com/HermitGeek/demo-validate/issues"
+  },
+  "dependencies": {
+    "@calmer/monorepo-validate-2": "^0.0.1"
   }
 }
