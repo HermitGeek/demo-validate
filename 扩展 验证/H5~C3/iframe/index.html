@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    父页面
+    <iframe src="./child.html" frameborder="0"></iframe>
+</body>
+
+<script>
+    const child = document.querySelector('iframe');
+
+    setTimeout(() => {
+        child.src += '#name'
+
+        console.log(child.src)
+    }, 2000);
+</script>
+</html>

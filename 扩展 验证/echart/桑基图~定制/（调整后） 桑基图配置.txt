@@ -1,0 +1,444 @@
+const data = {
+    nodes: [{
+        name: '万达百货'
+      },
+      {
+        name: '生活精品'
+      },
+      {
+        name: '服装服饰'
+      },
+      {
+        name: '超市'
+      },
+      {
+        name: '乐购'
+      },
+      {
+        name: '百货'
+      },
+      {
+        name: '屈臣氏'
+      },
+      {
+        name: 'C&A'
+      },
+      {
+        name: 'VERO MODA'
+      },
+      {
+        name: '餐饮美食'
+      },
+      {
+        name: '宝贝王'
+      },
+      {
+        name: '悦诗风吟'
+      },
+      {
+        name: '三叶草'
+      },
+      {
+        name: '热风'
+      },
+      {
+        name: '休闲娱乐'
+      },
+      {
+        name: '避风塘'
+      },
+      {
+        name: '数码'
+      }
+    ],
+
+    links: [{
+        target: "万达百货",
+        source: "生活精品",
+        value: 3003
+      },
+      {
+        target: "万达百货",
+        source: "服装服饰",
+        value: 4659
+      },
+      {
+        target: "万达百货",
+        source: "超市",
+        value: 700
+      },
+      {
+        target: "乐购",
+        source: "百货",
+        value: 700
+      },
+      {
+        target: "屈臣氏",
+        source: "服装服饰",
+        value: 649
+      },
+      {
+        target: "C&A",
+        source: "服装服饰",
+        value: 1348
+      },
+      {
+        target: "VERO MODA",
+        source: "服装服饰",
+        value: 715
+      },
+      {
+        target: "C&A",
+        source: "超市",
+        value: 299
+      },
+      {
+        target: "乐购",
+        source: "餐饮美食",
+        value: 858
+      },
+      {
+        target: "万达百货",
+        source: "餐饮美食",
+        value: 2356
+      },
+      {
+        target: "宝贝王",
+        source: "餐饮美食",
+        value: 484
+      },
+      {
+        target: "悦诗风吟",
+        source: "服装服饰",
+        value: 764
+      },
+      {
+        target: "VERO MODA",
+        source: "生活精品",
+        value: 387
+      },
+      {
+        target: "三叶草",
+        source: "百货",
+        value: 303
+      },
+      {
+        target: "C&A",
+        source: "百货",
+        value: 1264
+      },
+      {
+        target: "三叶草",
+        source: "服装服饰",
+        value: 658
+      },
+      {
+        target: "热风",
+        source: "百货",
+        value: 545
+      },
+      {
+        target: "乐购",
+        source: "服装服饰",
+        value: 943
+      },
+      {
+        target: "C&A",
+        source: "生活精品",
+        value: 1216
+      },
+      {
+        target: "三叶草",
+        source: "餐饮美食",
+        value: 303
+      },
+      {
+        target: "万达百货",
+        source: "休闲娱乐",
+        value: 197
+      },
+      {
+        target: "乐购",
+        source: "超市",
+        value: 72
+      },
+      {
+        target: "乐购",
+        source: "生活精品",
+        value: 762
+      },
+      {
+        target: "屈臣氏",
+        source: "生活精品",
+        value: 729
+      },
+      {
+        target: "悦诗风吟",
+        source: "生活精品",
+        value: 609
+      },
+      {
+        target: "热风",
+        source: "餐饮美食",
+        value: 360
+      },
+      {
+        target: "万达百货",
+        source: "百货",
+        value: 618
+      },
+      {
+        target: "三叶草",
+        source: "生活精品",
+        value: 362
+      },
+      {
+        target: "热风",
+        source: "生活精品",
+        value: 443
+      },
+      {
+        target: "C&A",
+        source: "餐饮美食",
+        value: 986
+      },
+      {
+        target: "避风塘",
+        source: "服装服饰",
+        value: 680
+      },
+      {
+        target: "VERO MODA",
+        source: "超市",
+        value: 69
+      },
+      {
+        target: "悦诗风吟",
+        source: "百货",
+        value: 411
+      },
+      {
+        target: "宝贝王",
+        source: "生活精品",
+        value: 362
+      },
+      {
+        target: "避风塘",
+        source: "百货",
+        value: 467
+      },
+      {
+        target: "避风塘",
+        source: "生活精品",
+        value: 509
+      },
+      {
+        target: "热风",
+        source: "服装服饰",
+        value: 708
+      },
+      {
+        target: "宝贝王",
+        source: "服装服饰",
+        value: 428
+      },
+      {
+        target: "VERO MODA",
+        source: "百货",
+        value: 239
+      },
+      {
+        target: "屈臣氏",
+        source: "百货",
+        value: 517
+      },
+      {
+        target: "屈臣氏",
+        source: "餐饮美食",
+        value: 513
+      },
+      {
+        target: "C&A",
+        source: "休闲娱乐",
+        value: 132
+      },
+      {
+        target: "避风塘",
+        source: "餐饮美食",
+        value: 346
+      },
+      {
+        target: "屈臣氏",
+        source: "超市",
+        value: 134
+      },
+      {
+        target: "悦诗风吟",
+        source: "超市",
+        value: 133
+      },
+      {
+        target: "VERO MODA",
+        source: "餐饮美食",
+        value: 260
+      },
+      {
+        target: "宝贝王",
+        source: "超市",
+        value: 81
+      },
+      {
+        target: "悦诗风吟",
+        source: "餐饮美食",
+        value: 373
+      },
+      {
+        target: "热风",
+        source: "超市",
+        value: 85
+      },
+      {
+        target: "C&A",
+        source: "数码",
+        value: 20
+      },
+      {
+        target: "三叶草",
+        source: "休闲娱乐",
+        value: 37
+      },
+      {
+        target: "屈臣氏",
+        source: "数码",
+        value: 7
+      },
+      {
+        target: "宝贝王",
+        source: "百货",
+        value: 197
+      },
+      {
+        target: "万达百货",
+        source: "数码",
+        value: 38
+      },
+      {
+        target: "三叶草",
+        source: "超市",
+        value: 82
+      },
+      {
+        target: "避风塘",
+        source: "超市",
+        value: 154
+      },
+      {
+        target: "屈臣氏",
+        source: "休闲娱乐",
+        value: 66
+      },
+      {
+        target: "悦诗风吟",
+        source: "休闲娱乐",
+        value: 44
+      },
+      {
+        target: "热风",
+        source: "休闲娱乐",
+        value: 37
+      },
+      {
+        target: "悦诗风吟",
+        source: "数码",
+        value: 8
+      },
+      {
+        target: "乐购",
+        source: "休闲娱乐",
+        value: 81
+      },
+      {
+        target: "VERO MODA",
+        source: "数码",
+        value: 2
+      },
+      {
+        target: "避风塘",
+        source: "休闲娱乐",
+        value: 102
+      },
+      {
+        target: "热风",
+        source: "数码",
+        value: 7
+      },
+      {
+        target: "乐购",
+        source: "数码",
+        value: 12
+      },
+      {
+        target: "三叶草",
+        source: "数码",
+        value: 7
+      },
+      {
+        target: "VERO MODA",
+        source: "休闲娱乐",
+        value: 11
+      },
+      {
+        target: "宝贝王",
+        source: "休闲娱乐",
+        value: 20
+      },
+      {
+        target: "避风塘",
+        source: "数码",
+        value: 7
+      },
+      {
+        target: "宝贝王",
+        source: "数码",
+        value: 1
+      }
+    ]
+  }
+
+
+
+  myChart.setOption(option = {
+    title: {
+      text: 'Sankey Diagram'
+    },
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove'
+
+    },
+    color: ['#52a1d5', '#5ec3e5', '#85dee2', '#aee4bc', '#fbdb71', '#f3a385',
+      '#eb7a93', '#d16bab', '#da95ce', '#e0bff0', '#9a99ef', '#7e7be3', '#9cbffa'
+    ],
+    series: [{
+      type: 'sankey',
+      layout: 'none',
+      data: data.nodes,
+      links: data.links,
+      label: { // 文字
+        color: 'red',
+      },
+      itemStyle: { // 柱状体
+        normal: {
+          borderWidth: 1,
+          borderColor: 'transparent',
+        }
+      },
+      lineStyle: { // 背景
+        normal: {
+          curveness: 0.5,
+          opacity: 1, // 透明度
+          color: 'yellow'
+        }
+      }
+    }]
+  });

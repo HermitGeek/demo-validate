@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let timeoutId = null;
+
+    function customInterval(fn, delay) {
+
+        timeoutId = setTimeout(() => {
+            fn()
+            clearTimeout(timeoutId);
+
+            return customInterval(fn, delay)
+        }, delay);
+
+        return timeoutId
+    }
+
+    function clearCustomInterval(id) {
+        clearTimeout(id);
+    }
+
+
+    // 如下，验证过程
+    const id = customInterval(() => {
+        console.log(new Date().getTime())
+    }, 1000)
+
+
+    setTimeout(() => {
+        clearCustomInterval(timeoutId)
+    }, 5000);
+</script>
+
+</html>

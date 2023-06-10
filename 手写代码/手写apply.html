@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    Function.prototype.apply2 = function(context, arr) {
+        var context = context || window;   
+        var key = Symbol();
+
+        context[key] = this;
+
+        const result = context[key](...arr);
+
+        delete context[key];
+
+        return result;
+    }
+
+    console.log(Math.max.apply2(null, [1, 2, 3]))
+</script>
+</html>

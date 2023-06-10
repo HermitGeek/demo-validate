@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>arguments</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        function aaa(a, b, c) {
+            var result = [].slice.apply(arguments);
+
+            console.log(result.slice(1));  // 整个函数体
+        }
+
+        aaa(1, 2, 3);
+    </script>
+    <script>
+        function fn(aaa) {
+            console.log(this);
+        }
+
+        fn.call(111);
+    </script>
+</html>

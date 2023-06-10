@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>this指向</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function createFunctions() {
+        var result = [];
+        for (var i = 0; i < 10; i++) {
+            result[i] = function() {
+                return i;
+            };
+        }
+        return result;
+    }
+
+    var funcs = createFunctions();
+
+
+    for (var i = 0; i < funcs.length; i++) {
+        console.log(funcs[i]());
+    }
+</script>
+
+<script>
+    function createFunctions() {
+        var result = [];
+        for (var i = 0; i < 10; i++) {
+            (function(i) {
+                result[i] = function() {
+                    return i;
+                };
+            })(i);
+        }
+        return result;
+    }
+
+    var funcs = createFunctions();
+
+
+    for (var i = 0; i < funcs.length; i++) {
+        console.log(funcs[i]());
+    }
+</script>
+
+</html>

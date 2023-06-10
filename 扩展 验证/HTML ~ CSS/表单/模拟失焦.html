@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box,
+        .list {
+            width: 300px;
+        }
+    </style>
+
+</head>
+<body class="body">
+    <div class="box">
+        当前项
+        <div class="list">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>3</p>        
+        </div>
+    </div>
+</body>
+<script>
+    const body = document.querySelectorAll('.body')[0];
+
+    const box = document.querySelectorAll('.box')[0];
+
+    const current = document.querySelectorAll('.current')[0];
+
+    const list = document.querySelectorAll('.list')[0];
+
+    body.addEventListener('click', (e) => {
+        const result = e.target.querySelector('.list');
+
+        console.log(Boolean(result))
+    });
+
+
+
+
+    console.log(box);
+</script>
+</html>

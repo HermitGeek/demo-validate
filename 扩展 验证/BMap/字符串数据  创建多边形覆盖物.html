@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+    body,
+    html,
+    #allmap {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+      font-family: "微软雅黑";
+    }
+  </style>
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=OnLHNAr2IUm1jdGnuBYfEhvK"></script>
+  <title>添加行政区划</title>
+</head>
+
+<body>
+  <div id="allmap"></div>
+</body>
+
+</html>
+<script type="text/javascript">
+  // 百度地图API功能
+  var map = new BMap.Map("allmap");
+  map.centerAndZoom(new BMap.Point(116.403765, 39.914850), 5);
+  map.enableScrollWheelZoom();
+
+
+  const boundarys = [
+    "116.330698,39.795533;116.3321,39.795464;116.333321,39.795824;116.334316,39.795687;116.334597,39.794854;116.333661,39.79273;116.334687,39.792387;116.334255,39.79143;116.333178,39.791666;116.332998,39.791444;116.332531,39.791611;116.331938,39.792248;116.331758,39.794189;116.33068,39.79423",
+    "116.303758,39.831375;116.306848,39.831402;116.306911,39.82893;116.305276,39.82911;116.303937,39.828909"
+  ];
+
+
+  const option = {
+    fillColor: 'green', // 填充颜色。当参数为空时，圆形将没有填充效果。
+    fillOpacity: 0.6, // 填充的透明度，取值范围0 - 1。
+    strokeColor: 'red', // 边线颜色。
+    strokeWeight: 2, // 边线的宽度，以像素为单位。
+    strokeOpacity: 0.8, // 边线透明度，取值范围0 - 1。
+    strokeStyle: 'solid', // 边线的样式，solid或dashed。
+    enableMassClear: false
+  };
+
+  var pointArray = [];
+  boundarys.forEach((boundary) => {
+    const overlay = new BMap.Polygon(boundary, option); //建立多边形覆盖物
+    map.addOverlay(overlay); //添加覆盖物
+
+    pointArray = pointArray.concat(overlay.getPath());
+  });
+
+  map.setViewport(pointArray);
+
+  setTimeout(() => {
+    console.log('移除');
+    map.clearOverlays();
+  }, 10000);
+</script>

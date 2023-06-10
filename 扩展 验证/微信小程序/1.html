@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let index = [1, 2].length;
+    let newData = {}; // 新变更数据
+
+    [3, 4, 5].forEach((item) => {
+        newData['listData[' + (index++) + ']'] = item // 赋值，索引递增
+    })
+
+    console.log(newData);
+
+    this.setData({
+        'listData[1]': 1
+    })
+</script>
+
+</html>

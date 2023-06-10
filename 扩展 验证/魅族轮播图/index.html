@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>魅族轮播</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="box">
+            <li class="box-img"></li>
+            <li class="box-img"></li>
+            <li class="box-img"></li>
+            <li class="box-img"></li>
+            <li class="box-img"></li>
+        </ul>
+
+        <ul class="item">
+            <li class="item-select" data-id="0"></li>
+            <li class="item-select" data-id="1"></li>
+            <li class="item-select" data-id="2"></li>
+            <li class="item-select" data-id="3"></li>
+            <li class="item-select" data-id="4"></li>
+        </ul>
+
+        <div class="toggle-left">L</div>
+
+        <div class="toggle-right">R</div>
+    </div>
+</body>
+<script>
+    var imgIndex = 0; // 全局变量：控制哪个图片显示，哪个按钮高亮
+    var imgs = document.getElementsByClassName('box-img');
+    var imgsArray = [].slice.apply(imgs); // 伪数组转为真数组
+    var items = document.getElementsByClassName('item-select');
+    var itemsArray = [].slice.apply(items); // 伪数组转为真数组
+
+    // 全局方法：图片呼吸效果显示，按钮高亮
+    function action(i) {
+        imgsArray[i].style.opacity = '1';
+        itemsArray[i].style.backgroundColor = '#00c3f5';
+        imgsArray.forEach(function(img, index) {
+            if (index !== i) {
+                imgsArray[index].style.opacity = '0';
+                itemsArray[index].style.backgroundColor = 'transparent';
+            }
+        });
+    }
+
+    action(imgIndex);
+
+    // 底部按钮注册事件
+    itemsArray.forEach(function(item, index) {
+        item.addEventListener('mouseenter', function(e) {
+            imgIndex = Number(e.target.dataset.id); // dataset自定义属性
+            action(imgIndex);
+        });
+    });
+
+
+    // 左右按钮注册事件
+    var left = document.getElementsByClassName('toggle-left')[0];
+    var right = document.getElementsByClassName('toggle-right')[0];
+
+    left.addEventListener('click', function(e) {
+        if (imgIndex > 0) {
+            imgIndex -= 1;
+            action(imgIndex);
+        } else {
+            imgIndex = 4;
+            action(imgIndex);
+        }
+    });
+
+    right.addEventListener('click', function(e) {
+        if (imgIndex > 3) {
+            imgIndex = 0;
+            action(imgIndex);
+        } else {
+            imgIndex += 1;
+            action(imgIndex);
+        }
+    });
+
+    // 自动轮播
+    setInterval(function () {
+        if (imgIndex > 3) {
+            imgIndex = 0;
+            action(imgIndex);
+        } else {
+            imgIndex += 1;
+            action(imgIndex);
+        }
+    }, 6000);
+</script>
+
+</html>

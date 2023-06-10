@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const repeat = (fn, times, interval) => {
+        return function (...params) {
+            let i = 0;
+            const intervalId = setInterval(() => {
+                if (i < 4) {
+                    fn(params)
+                    i += 1;
+                } else {
+                    clearInterval(intervalId)
+                }
+            }, interval);
+        };
+    }
+
+    const repeatFunc = repeat(console.log, 4, 1000);
+
+    repeatFunc("helloworld");
+    
+    repeatFunc("helloworld");
+
+</script>
+
+</html>

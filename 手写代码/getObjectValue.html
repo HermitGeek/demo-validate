@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<!-- <script>
+    // 封装工具函数
+    const getObjectValue = (obj, expr, defaultValue) => {
+        const keys = expr.split('.');
+        let data = obj;
+
+        for (let index = 0; index < keys.length; index++) {
+            data = data[keys[index]]
+
+            if (data === undefined || data === null) {
+                return defaultValue;
+            }
+        }
+
+        return data;
+    }
+    
+    // 示例
+    const data = {
+        age: {
+            value: 18
+        }
+    }
+    
+    const ageValue = getObjectValue(data, 'age.value', 118);
+    const nameValue = getObjectValue(data, 'name.value', '是谁');
+
+    console.log(ageValue, nameValue);
+</script> -->
+
+<script>
+    // 示例
+    const data = {
+        age: {
+            value: 0
+        }
+    }
+
+    const ageValue1 = data ?. age ?. value || 18;
+    const ageValue2 = data ?. age ?. value ?? 18;
+
+
+
+    console.log(ageValue1, ageValue2);       // 18  0
+</script>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 240px;
+            border-collapse: collapse;
+            border-spacing: 1;
+            border-spacing: 0;
+            background: yellow;
+
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        table tr td {
+            word-break: break-all;
+            word-wrap: break-word;
+            font: 500 14px Arial;
+        }
+
+        table tr td div {
+            border-bottom: 1px solid #939598;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 105px;
+        }
+
+        table tr td:first-child div {
+            text-align: left;
+            margin-left: 10px !important;
+            /* padding-left: 5px; */
+        }
+
+        /* table tr td:last-child div {
+            text-align: right;
+            margin-right: 15px;
+            padding-right: 5px;
+            margin-left: -4px;
+        } */
+
+        table tr td:last-child div {
+            text-align: right;
+            /* margin-right: 15px; */
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td width="120">
+                <div>
+                    板块名称板块名称板块名称板块名称板块名称
+                </div>
+            </td>
+            <td width="120">
+                <div>
+                    具体值
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td >
+                <div>
+                    板块名称
+                </div>
+            </td>
+            <td width="120">
+                <div>
+                    具体值
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="120">
+                <div>
+                    板块名称
+                </div>
+            </td>
+            <td width="120">
+                <div>
+                    具体值
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Circle {
+        draw() {
+            console.log('画一个圆')
+        }
+    }
+
+    class CircleDe {
+        constructor(circle) {
+            this.circle = circle;
+        }
+
+        draw() {
+            this.circle.draw();
+
+            console.log('装饰一下')
+        }
+    }
+
+    const circleDe = new CircleDe(new Circle());
+
+    circleDe.draw()
+</script>
+</html>

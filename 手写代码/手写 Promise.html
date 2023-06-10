@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    (function () {
+        const status = {
+            pending: 0,
+            fulfilled: 1,
+            rejected: 2
+        }
+
+        class CustomePromise {
+            constructor(fn) {
+                this._status = status.pending;
+
+                this.resolveFunc = () => {};
+                this.rejectFunc = () => {};
+
+                this._handle(fn);
+            }
+
+            _handle(func) {
+                func((value) => {
+                    if (this._status) return;
+
+                    setTimeout(() => {
+                        this._status = status.fulfilled;
+                        this.resolveFunc(value);
+                    });
+
+                }, (error) => {
+                    if (this._status) return;
+
+                    setTimeout(() => {
+                        this._status = status.rejected;
+                        this.rejectFunc(error);
+                    });
+                })
+            }
+
+            then(resolveFunc, rejectFunc) {
+                this.resolveFunc = resolveFunc;
+                this.rejectFunc = rejectFunc;
+            }
+        }
+
+
+        window.CustomePromise = CustomePromise;
+    })()
+
+    // 如下，验证过程
+    new CustomePromise(function (resolve, reject) {
+        setTimeout(() => {
+            resolve(1);
+        }, 2000);
+
+        // reject(2)
+    }).then(function (res) {
+        console.log('res', res)
+    }, function (error) {
+        console.log('error', error)
+    })
+</script>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arrayLike = {
+        '0': 'a',
+        '2': 'c',
+        'c': 'd',
+        length: 3
+    };
+
+    console.log(Array.from(arrayLike)); // ["a", undefined, "c"]
+</script>
+
+</html>

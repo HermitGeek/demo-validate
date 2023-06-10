@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // var name = 'windowName';
+    //
+    // var obj = {
+    //     name: 'objName',
+    //     getName: function() {
+    //             return this.name;
+    //
+    //     }
+    // };
+    //
+    // console.log(obj.getName());   // objName
+    // console.log((obj.getName)()); // objName
+    // console.log((obj.getName = obj.getName)());  // windowName // 先赋值，再执行赋值后的结果；因为赋值表达式的值是本身，所以this不能得到维持
+</script>
+
+<script>
+    var name = 'windowName';
+
+    var obj = {
+        name: 'objName',
+        getName: function() {
+            return function() {
+                return this.name;
+            }
+        }
+    };
+
+    console.log(obj.getName()());  // windowName
+</script>
+
+
+<script>
+    var name = 'windowName';
+
+    var obj = {
+        name: 'objName',
+        getName: function() {
+            var that = this;
+            return function() {
+                return that.name;
+            }
+        }
+    }
+
+    console.log(obj.getName()());
+</script>
+
+<script>
+    // var name = 'windowName';
+    //
+    // var obj = {
+    //     name: 'objName',
+    //     getName: function() {
+    //
+    //         return (function () {
+    //             return this.name
+    //         })()
+    //     }
+    // };
+    //
+    // console.log(obj.getName()); // windowName
+</script>
+
+</html>

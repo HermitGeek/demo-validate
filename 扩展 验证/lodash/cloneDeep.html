@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lodash.min.js"></script>
+</head>
+<body>
+</body>
+<script>
+    const arr = [
+        1,
+        {
+            name: 'zhang',
+            age: 18
+        }
+    ];
+
+    const arrClone = _.cloneDeep(arr);
+
+    arr[1].age = 88;
+
+    console.log(arrClone[1].age);   // 18
+</script>
+</html>

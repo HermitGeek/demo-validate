@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+
+    define(['a', 'b', 'c', 'd'], function (a, b, c, d) { // 依赖必须一开始就写好
+      a.doSomething()
+      // 此处省略100行
+      ...
+      b.doSomething()
+      ...
+    })
+  </script>
+</html>

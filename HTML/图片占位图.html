@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // const img = (function () {
+    //     const img = new Image();
+
+    //     img.onerror = function() {
+    //         console.log('加载失败');
+
+    //         img.src = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg'
+    //     }
+
+    //     return {
+    //         src(src) {
+    //             img.src = src;
+    //             document.body.append(img)
+    //         }
+    //     }
+    // })()
+
+    // // img.src('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg');
+
+    // img.src('dkdk');
+</script>
+<script>
+    const img = (function () {
+        const img = document.createElement('img')
+        document.body.append(img);
+
+        return {
+            setSrc(src) {
+                img.src = src;
+            }
+        }
+    })()
+
+    const imgProxy = (function (img) {
+        const imgProxy = new Image();
+
+        imgProxy.onload = function() {
+            img.setSrc(imgProxy.src);
+        }
+
+        return {
+            setSrc(src) {
+                img.setSrc('./assets/img.png');
+                imgProxy.src = src;
+            }
+        }
+    })(img)
+
+    imgProxy.setSrc('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg')
+</script>
+
+</html>

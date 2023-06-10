@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>递归</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var fn = function (m) {
+            if (m <= 1) {
+                return 1;
+            }
+
+            return arguments.callee(m-1) * m;
+        }
+
+        var fn1 = fn;
+        fn = null;
+
+        console.log(fn1(3));
+    </script>
+
+    <script>
+        var fn1 = function fn(m) {
+            if (m <= 1) {
+                return 1;
+            }
+
+            return fn(m-1) * m;
+        }
+
+        var fn2 = fn1;
+        fn1 = null;
+
+        console.log(fn2(3));
+    </script>
+</html>

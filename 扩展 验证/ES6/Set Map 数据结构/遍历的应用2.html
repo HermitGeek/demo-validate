@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let a1 = [1, 2, 3, 4];
+    let a2 = [3, 4, 5, 6];
+
+    let set1 = new Set(a1);
+    let set2 = new Set(a2);
+
+    let union = new Set([...set1, ...set2]);        // 并集
+
+    let intersect = [...set1].filter((item) => {    // 交集
+        return set2.has(item);
+    });
+
+    let difference = [...set1].filter((item) => {   // 差集
+        return !set2.has(item);
+    });
+
+    console.log([...union]);    // 并集   [1, 2, 3, 4, 5, 6]
+    console.log(intersect);     // 交集   [3, 4]
+    console.log(difference);    // 差集   [1, 2]
+</script>
+</html>

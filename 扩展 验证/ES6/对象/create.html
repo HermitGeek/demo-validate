@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var o1 = {name: 'zhangxin'};
+    var o2 = Object.create(o1);
+
+    o1.name ='xin';
+
+    console.log(Object.getOwnPropertyNames(o1));    // xin
+    console.log(o2 === o1);  // false
+</script>
+</html>

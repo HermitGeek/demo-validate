@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="test" type="text" value="Select me!" />
+</body>
+
+<script>
+class Parent {
+    static bbb () {
+
+    }
+
+    constructor() {
+        this.ccc = 222;
+    }
+
+    zhang() {
+        console.log('zhang')
+    }
+}
+
+Parent.prototype.xin = function() {
+    console.log('xin');
+}
+
+const parentObj = new Parent();
+
+
+class Child extends Parent {
+    constructor() {
+        super();
+        this.a = '111'
+    }
+
+    yang() {
+        console.log('yang')
+    }
+}
+
+const childObj = new Child();
+
+
+childObj.zhang()
+childObj.xin()
+childObj.yang()
+console.log(Parent.bbb)
+</script>
+
+</html>

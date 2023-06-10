@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./src/vue.js"></script>
+    <script src="./src/observe.js"></script>
+    <script src="./src/complie.js"></script>
+
+</head>
+<body>
+    <div id="mount">
+        {{ age }}
+        <div>
+            <p>我是{{name}}</p>
+        </div>
+
+        <div>
+            复杂数据: {{ object.news }}
+        </div>
+
+        <p v-text="text"></p>
+        <p v-html="innerHTML"></p>
+
+        <button v-on:click="handlerClick">按钮</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#mount',
+        data: {
+            age: 11,
+            name: '张新',
+            text: '指令',
+            innerHTML: '<h2>假按揭啊</h2>',
+            object: {
+                news: '新闻啊新闻'
+            }
+        },
+        methods: {
+            handlerClick() {
+                console.log('handlerClick', this)
+            }
+        }
+    })
+</script>
+</html>

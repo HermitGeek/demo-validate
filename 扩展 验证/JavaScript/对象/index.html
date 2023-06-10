@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>对象</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var obj1 = new Object();
+        obj1.name = 'zhangxin';
+
+        console.log(obj1);
+    </script>
+    <script>
+        function Computer(name, age) {
+            this.name = name;
+            this.age = age;
+
+            this.say = function () {
+                return '我是' + this.name + ';今年' + this.age;
+            }
+        }
+
+        var cp = new Computer('电脑', 20);
+        console.log(cp.say());  // 我是电脑;今年20
+    </script>
+</html>

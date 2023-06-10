@@ -1,0 +1,32 @@
+.dis-flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.w-100 {
+    width: 100px;
+}
+
+
+.h-200 {
+    height: 200px;
+}
+
+.min-h-100vh {
+    min-height: 100vh;
+}
+
+.bgc-green {
+    background: green;
+}
+
+.bgc-pink {
+    background: pink;
+}
+
+.flex-1 {
+    flex: 1;
+}

@@ -1,0 +1,17 @@
+.box {
+    height: 50px;
+}
+
+.child {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    background: red;
+    float: left;
+}
+
+.two {
+    height: 300px;
+    width: 100%;
+    background: yellow;
+}

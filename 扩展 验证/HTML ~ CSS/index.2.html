@@ -1,0 +1,561 @@
+[TOC]
+
+## 一、RegExp 正则
+
+### 1. 正则概述
+
+
+
+- 正则匹配：字符串、数字
+
+
+
+- 作用：匹配字符、配合后台语言进行匹配下载
+
+
+
+- JS中 正则 用`/ /` 括起来；正则的匹配模式支持以下3个标志：
+
+    - `/ /g` 全局模式：应用于所有字符串，而不是发现第一个匹配时就停止
+
+    - `/ /i` 不区分大小写模式：匹配时忽略字母的大小写
+
+    - `/ /m` 多行模式，在查到一行文本末尾时，还会继续查找下一行 
+
+    
+
+- 是什么？
+
+
+
+- 应用场景？
+
+
+
+- 形式
+
+
+
+### 2. 正则的 2种创建方式
+
+- 构造函数创建
+
+
+
+
+
+- 字面量创建
+
+
+
+
+
+### 3. 正则 的 语法规则、常见的元字符
+
+
+
+- 语法规则：
+
+    - 数字的范围 0--9
+
+    
+
+    - 元字符：区分大小写
+
+    
+
+    - 空格也是有意义的
+
+
+
+
+
+- 什么是元字符？
+
+
+
+
+
+- 特殊元字符，如下：
+
+
+
+元字符 | 描述
+
+---- | ----
+
+  . | 除了 \n 以外的任意一个字符
+
+  [ ]	| 作用1：表示范围：如 [0-9a-z]【严格模式下】表示0-9 a-z之间数字出现1次，如：[1-9][0-9] 表示10-99之间的一个数字、[A-Z]
+
+    |	作用2：干掉特殊元字符的基本作用：不包括 _ ，如[.] 表示的是点这个符号
+
+    |
+
+    |
+
+  { } | 前面表达式出现的次数：如 [0-9]{5}
+
+     | 用法： [0-9]{1,6} 【严格模式下】0-9最少出现一次，最多出现6次  
+
+     | 用法： .{9,} 【严格模式下】 表示除\n 以外的字符，最少出现9次；  
+
+     | 用法： .{,9} 会报错
+
+    * | 表示： * 前面的表达式可出现 0 到无限次； 如： [0-9]* 表示0-9之间的数字可以出现 0到无限次
+
+   + | 表示： + 前面的表达式可出现 1 到无限次；
+
+  ? | 表示： ? 前面的表达式可出现 0 ~ 1 次；
+
+  |
+
+  |
+
+竖线 | 或者：优先级最低   
+
+（ ）| 作用1：提升优先级
+
+   | 作用2：分组
+
+ ^ | 作用1： 以....开始
+
+  | 作用2：取反
+
+  $ | 以...结束
+
+  |
+
+  |
+
+ \d | 表示：数字中的一个，相当于[0-9]
+
+ \D | 表示：非数字中的一个,相当于[ ^ 0-9]
+
+ \s | 空白元字符
+
+ \S | 非空白元字符
+
+ \w | 非特殊符号 ：包含[0-9a-zA-Z] - _ ，包含_下划线
+
+ \W | 特殊字符 ：`-` `_` 等
+
+ 
+
+     
+
+
+
+
+
+### 3. 正则中API
+
+- 正则.test( 字符串 ) ---> 检测 字符串是否符合 正则的要求,返回布尔值
+
+
+
+- 正则.exec( 字符串 ) ---> 检测 字符串中是否有 正则表达的内容，返回数组
+
+
+
+```
+
+var str = "longen and yunxi";
+
+console.log(/longen/.exec(str)); 
+
+// 打印 ["longen", index: 0, input: "longen and yunxi"]
+
+
+
+// 假如没有找到的话，则返回null
+
+console.log(/wo/.exec(str)); // null
+
+```
+
+
+
+
+
+### 4. 正则 严格模式、非严格模式
+
+
+
+- 严格：有开始、结束字符 `/^ $/`
+
+
+
+```
+
+<script>
+
+    
+
+</script>
+
+```
+
+- 非严格： 没有开始、结束字符，对于{ }次数限制，达到下线即可，可以超越上限
+
+
+
+```
+
+<script>
+
+    console.log(/b|(bacf)/.test('abcsd')); // true
+
+    console.log(/[0-9]{2,4}/.test(234567)); // true
+
+    console.log(/[0-9]{2,4}/.test(2)); // false
+
+
+
+    console.log(/\D/.test('haha哈哈')); // true
+
+    console.log(/.?/.test('234')); // true
+
+</script>
+
+```
+
+
+
+
+
+### 5. 正则的应用（字符串方法）
+
+- 字符串.replace( 正则表达式 ，字符串 ) ---> 替换
+
+
+
+```
+
+<script>
+
+    // 去掉字符串中空格 /g 全局清理
+
+    var str = 'zhks k h g k n ';
+
+    console.log(str.trim()); // 'zhks k h g k n'
+
+    console.log(str.replace(/\s/g, '')); // 'zhkskhgkn'
+
+</script>
+
+```
+
+
+
+- 字符串.split( 正则 ) ---> 切除分割符，返回数组
+
+
+
+- 字符串.match( 正则 ) ---> 获取正则对应的内容，返回数组
+
+
+
+
+
+
+
+- 常见的正则验证
+
+- 邮箱验证：
+
+
+
+```js
+
+<script>
+
+    var mail = document.querySelector('#mail');
+
+    mail.onblur = function () {
+
+      var reg = /^[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+([.][0-9a-zA-Z]+){1,2}$/;
+
+      console.log(mail.value);
+
+      if(reg.test(mail.value)){
+
+        this.style.backgroundColor = 'green';
+
+      }else{
+
+        this.style.backgroundColor = 'red';
+
+      }
+
+
+
+    };
+
+</script>
+
+```
+
+
+
+- 座机验证
+
+```js
+
+<script>
+
+    var tel = document.querySelector('#tel');
+
+    tel.onblur = function () {
+
+      var regTel = /^\d{3,4}[-]\d{8}$/;
+
+      if(regTel.test(tel.value)){
+
+        this.style.backgroundColor = 'green';
+
+      }else{
+
+        this.style.backgroundColor = 'red';
+
+      }
+
+    }
+
+</script>
+
+```
+
+
+
+## 二、Date 类型
+
+### 1. `new Date()` 创建一个日期对象
+
+
+
+- 构造函数不传参的话，自动获取当前的时间
+
+
+
+```js
+
+var now = new Date();
+
+console.log(now); // Tue Mar 20 2018 01:24:21 GMT+0800 (CST)
+
+```
+
+
+
+```
+
+var now = (new Date()).toLocaleString();
+
+console.log(now); // "2018/3/20 上午1:24:21"
+
+```
+
+
+
+### 2. `new Date()` 实例的方法：
+
+- `.getFullYear()` ： 获取年份
+
+- `.getMonth()` ： 获取月份（0~11月）
+
+- `.getDate()` ： 获取日
+
+- `.getHours()` ： 获取小时（24小时制）
+
+- `.getMinutes()` ： 获取分钟
+
+- `.getSeconds()` ： 获取秒
+
+- `.getMilliseconds()` ： 获取毫秒
+
+
+
+### 3. 封装获取当前中国时间的方法 【代码】
+
+
+
+```
+
+function getDateTime(dt) {
+
+    //获取年
+
+    var year = dt.getFullYear();
+
+    //获取月份：0-11
+
+    var month = dt.getMonth() + 1;
+
+    //获取日
+
+    var day = dt.getDate();
+
+    //获取小时
+
+    var h = dt.getHours();
+
+    //获取分钟
+
+    var m = dt.getMinutes();
+
+    //获取秒
+
+    var s = dt.getSeconds();
+
+    // 获取星期
+
+    var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
+    var week = weeks[dt.getDay()];
+
+
+
+    month = month < 10 ? "0" + month : month;
+
+    day = day < 10 ? "0" + day : day;
+
+    h = h < 10 ? "0" + h : h;
+
+    m = m < 10 ? "0" + m : m;
+
+    s = s < 10 ? "0" + s : s;
+
+
+
+    //返回指定的格式的时间
+
+    return year + "年" + month + "月" + day + "日，" + week + h + "时" + m + "分" + s + "秒";
+
+}
+
+var time = getDateTime(new Date());
+
+```
+
+
+
+
+
+## 三、Global 全局对象 ---> 在所有代码执行前，作用域中已经有的内置对象，但不能直接访问
+
+### 1. Global 对象详解
+
+- Global（全局）对象，可以说是 ECMAScript 中最特别的一个对象，不管从任何角度看，这个对象都是不存在的，因为不能访问到 Global对象
+
+
+
+- 换句话说，所有在全局作用域中定义的属性或方法，都是 Global 对象的属性和方法
+
+    - 如 `isNaN()` `isFinite()` `parseInt()` `parseFloat()` 等
+
+
+
+- Global对象不能直接访问，但 WEB 浏览器都是将这个全局对象作为 window 对象的一部分加以实现
+
+
+
+- 因此在全局对象中生命的所有属性、方法都成了：window 对象的属性、方法。
+
+
+
+### 2. eval 方法 将字符串转为可执行的代码
+
+- 只接收一个参数：要执行的代码字符串
+
+
+
+- eval() 方法中：创建的任何变量 、 方法否不会被提升
+
+
+
+
+
+```
+
+// 输出结果： 222
+
+<script>
+
+    var s = "function aaa() { console.log(222); }";
+
+
+
+    eval(s);
+
+    aaa();
+
+</script>
+
+```
+
+
+
+
+
+```
+
+// 输出结果：报错（因为：eval() 方法中：创建的任何变量 、 方法否不会被提升）
+
+<script>
+
+    var s = "function aaa() { console.log(222); }";
+
+
+
+    aaa();
+
+    eval(s);
+
+</script>
+
+```
+
+
+
+
+
+
+
+
+
+TODO: 完善 Date 对象
+
+
+
+
+
+
+
+https://wangdoc.com/javascript/stdlib/date.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

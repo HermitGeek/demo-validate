@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 兼容 symbol、set、map
+    const checkType = (data, type) => {
+        return toString.call(data).endsWith(`${type}]`);
+    }
+
+    switch (toString.call(data)) {
+            case '[object Array]':
+                result = [];
+                break;
+            case '[object Object]':
+                result = {};
+                break;
+            case '[object Symbol]':
+                result = Symbol(data.description);
+                break;
+            case '[object Set]':
+                result = new Set();
+                break;
+            case '[object Map]':
+                result = new Map();
+                break;
+        }
+
+        Object.keys(data).forEach((key) => {
+
+
+        });
+
+    const cloneS
+
+
+    const cloneDeep = (data) => {
+        let result = checkType(data, 'Array') ? [] : {};
+
+        for (const [key, value] of Object.entries(data)) {
+            if (typeof value === 'object') {
+                result[key] = cloneDeep(value);
+            } else if (checkType(value, 'Set')) {
+
+            } else if (checkType(value, 'Map')) {
+                
+            } else {
+                result[key] = value;
+            }
+        }
+
+        return result;
+    };
+
+
+
+    const old = {
+        name: {
+            value: '张新'
+        },
+        age: 18
+    };
+
+    console.log(cloneDeep(old));
+</script>
+
+</html>

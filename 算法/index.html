@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Parent(age) {
+        this.age = age || 18
+    }
+
+    function Child(age, name) {
+        Parent.call(this, age)
+        this.name = name
+    }
+
+    Child.prototype = new Parent()
+    Child.prototype.constructor = Child     // 修复构造函数指向
+
+    const obj = new Child(18, 'jon')
+
+
+    console.log(obj instanceof Child);      // true
+    console.log(obj instanceof Parent);     // false
+    console.log(Child.prototype.constructor);
+    console.log(Parent.prototype.constructor);
+</script>
+
+</html>

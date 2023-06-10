@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./src/vue.js"></script>
+    <script src="./src/complie.js"></script>
+    <script src="./src/observe.js"></script>
+    <script src="./src/watcher.js"></script>
+</head>
+<body>
+    <div id="mount">
+        {{ message }}
+        <div>
+            块级 {{ message }}
+        </div>
+
+        <p v-text="p1"></p>
+        <p v-html="p2"></p>
+
+        <button v-on:click="handleClick">click事件</button>
+    </div>
+</body>
+<script>
+    let vm  = new Vue({
+        el: '#mount',
+        data: {
+            message: '插值表达式',
+            p1: 'v-text 指令',
+            p2: 'v-html 指令'
+        },
+        methods: {
+            handleClick() {
+                console.log('handleClick', this.message)
+            }
+        }
+    })
+
+    vm.$data.message = 222
+
+    console.log(vm.$data)
+</script>
+</html>

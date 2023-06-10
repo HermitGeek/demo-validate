@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            background: red;
+        }
+
+        .box:hover::before {
+            content: attr(text);
+            display: block;
+            position: absolute;
+            top: 100px;
+
+            left: 0;
+            width: 200px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <span class="box" text="张新<br>aaa"> 价格 </span>
+</body>
+</html>

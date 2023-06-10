@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function hasPlugin(name) {
+        const na = name.toLowerCase();
+
+        for (let index = 0; index < navigator.plugins.length; index++) {
+            const item = navigator.plugins[index];
+
+            if (item.name.toLowerCase().indexOf(na) > -1) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    console.log(hasPlugin('viewer'));
+</script>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="main" style="width: 220px;height:300px;"></div>
+
+</body>
+<script src="./assets/echarts.min.js"></script>
+<script src="./assets/sankeyData.js"></script>
+
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
+
+  const option = {
+    title: {
+      show: false,
+      text: 'Sankey Diagram'
+    },
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove'
+    },
+    color: ['#52a1d5', '#5ec3e5', '#85dee2', '#aee4bc', '#fbdb71', '#f3a385',
+      '#eb7a93', '#d16bab', '#da95ce', '#e0bff0', '#9a99ef', '#7e7be3', '#9cbffa'
+    ],
+    series: [{
+      type: 'sankey',
+      layout: 'none',
+      data: nodes,
+      links: links,
+      label: { // 文字
+        color: '#cccc',
+      },
+      itemStyle: { // 柱状体
+        normal: {
+          borderWidth: 1,
+          borderColor: 'transparent',
+        }
+      },
+      lineStyle: { // 背景
+        normal: {
+          curveness: 0.5,
+          opacity: 1, // 透明度
+          color: '#ccc'
+        }
+      }
+    }]
+  }
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+</script>
+
+</html>

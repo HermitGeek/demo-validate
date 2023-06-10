@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var param = [2, -1, -3, 1, -5]; //参数放在数组中
+    var base = 7;  // X 取值7
+
+    // 常规写法
+    let total = 0;
+    param.forEach((value, index) => {
+        total = total + value * Math.pow(base, param.length - index - 1)
+    })
+    console.log('total', total);
+
+
+    // 霍纳法则
+    var sum = param[0];// 获得第一个参数
+    for (var i = 1; i < param.length; i++) { // 循环不断计算总值；
+        sum = base * sum + param[i];
+    }
+    console.log('sum : ' + sum); // sum : 4314
+</script>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+
+</body>
+<script>
+    const box = document.getElementById('box');
+
+    const arr = [{
+        name: 1,
+        children: [{
+            name: 2,
+            children: [{
+                name: 3,
+                children: [{
+                    name: 4
+                }]
+            }]
+        }]
+    }];
+
+
+
+    function createElement(type) {
+        return document.createElement(type);
+    }
+
+    function fn(obj, parent) {
+        const ulOuter = parent.appendChild(createElement('ul'));
+
+        for (let [key, value] of Object.entries(obj)) {
+            if (key === 'children') {
+                const ulInner = ulOuter.appendChild(createElement('ul'));
+
+                console.log(value);
+
+                return fn(value[0], ulInner);
+            } else {
+                const li = ulOuter.appendChild(createElement('li'));
+                console.log(value);
+                li.innerHTML = value;
+            }
+        }
+    }
+
+    fn(arr[0], box);
+</script>
+
+</html>

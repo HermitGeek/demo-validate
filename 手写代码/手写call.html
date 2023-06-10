@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    Function.prototype.call2 = function (context, ...arr) {
+        var context = context || window;
+
+        const key = Symbol();
+
+        // this 即调用 call2的函数（本质上是对象）
+        context[key] = this;
+        // context[key] 调用函数 this指向 context
+        // this 调用函数 this指向window
+
+        const result = context[key](...arr);
+
+        delete context[key];
+
+        return result;
+    }
+
+    const re = toString.call2([]);
+    console.log(re)
+</script>
+
+</html>

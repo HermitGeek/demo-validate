@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    window.onerror = function (message, source, lineno, colno, error) {
+        // message：错误信息（字符串）。
+        // source：发生错误的脚本URL（字符串）
+        // lineno：发生错误的行号（数字）
+        // colno：发生错误的列号（数字）
+        // error：Error对象（对象）
+        console.log('捕获到异常：', {
+            message,
+            source,
+            lineno,
+            colno,
+            error
+        });
+
+        return true;
+    }
+</script>
+<script>
+    setTimeout(() => {
+        Jartto
+    }, 100);
+
+</script>
+
+</html>

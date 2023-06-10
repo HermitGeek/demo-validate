@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+    求一个字符串最长的没有相同字符的连续子串
+    输入：abcdchjklpo
+    输出：dchjklpo
+    */
+    const str = 'abcdchjklpo';
+
+    const handle = (str) => {
+        let result = '';
+        let temp = '';
+
+        for (let i = 0; i < str.length; i++) {
+            const el = str[i];
+            const index = temp.indexOf(el)
+
+            if (index < 0) {
+                temp += el;
+            } else {
+                result = temp.length > result.length ? temp : result;
+                temp = temp.slice(index + 1) + el
+            }
+        }
+
+        result = temp.length > result.length ? temp : result;
+        return result;
+    }
+
+    console.log(handle(str));
+</script>
+</html>

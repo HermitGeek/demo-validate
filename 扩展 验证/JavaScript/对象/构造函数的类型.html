@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>33</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var Person = function () {}
+
+        var a = new Person();
+
+        console.log(a instanceof Person);  // false
+        // 此时：a的原型链： a --- {} --- Object.prototype --- null
+    </script>
+</html>

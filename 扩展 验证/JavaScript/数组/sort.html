@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const array = [{
+        seats: [
+            {type: '硬卧', count: 11},
+            {type: 'b', count: 12},
+            {type: 'c', count: 14},            
+        ]
+    },{
+        seats: [
+            {type: '硬卧', count: 20},
+            {type: 'b', count: 12},
+            {type: 'c', count: 14},            
+        ]
+    },{
+        seats: [
+            // {type: 'a', count: 40},
+            {type: 'b', count: 12},
+            {type: 'c', count: 14},            
+        ]
+    }];
+
+    array.sort((a, b) => {
+        if ((b.seats.find(item => item.type === '硬卧')) &&  (a.seats.find(item => item.type === '硬卧')).count) {
+        return  (b.seats.find(item => item.type === '硬卧')).count - (a.seats.find(item => item.type === '硬卧')).count;
+            
+        }
+    });
+
+    console.log(array);
+</script>
+
+</html>

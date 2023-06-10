@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,
+    html {
+      background: #ccc;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="main6" style="width: 324px;height:156px;"></div>
+
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart6 = echarts.init(document.getElementById('main6'));
+
+  var option6 = {
+    title: {
+      text: '消费地点偏好',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    xAxis: {
+      data: ["大古里11", "蓝港", "国贸", "望京", "金台路"],
+      axisTick: {
+          show: false,
+          alignWithLabel: true,  // 标签与刻度线位置
+          length: 2
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#fff',
+          fontSize: 13
+        }
+      },
+      axisLine: {   // 坐标轴轴线相关设置
+        show: false
+      },
+      z: 10
+    },
+    yAxis : {
+      show: false,
+      type : 'value'
+    },
+    series: [{ // For shadow
+        type: 'bar',
+        itemStyle: {
+          normal: {
+            color: 'rgba(0,0,0,0.05)'
+          }
+        },
+        barWidth: 18,
+        barGap: '-100%',   // 轴间距离
+        barCategoryGap: '40%',  // 类目间柱形距离
+        data: [300, 300, 300, 300, 300]
+      },
+      {
+        type: 'bar',
+        itemStyle: {
+          normal: {
+            color: '#21AAE1'
+          },
+        },
+        barWidth: 18,
+        data: [
+          {"name": "太古里","value": 100},
+          {"name": "蓝港","value": 155},
+          {"name": "国贸","value": 233},
+          {"name": "望京","value": 199},
+          {"name": "金台路","value": 145}
+        ]
+      }
+    ]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart6.setOption(option6);
+</script>
+
+</html>

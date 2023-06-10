@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    
+</body>
+<script>
+const getData = () => {
+    console.log('getData')
+};
+
+const check = async () => {
+    const result = await getData();
+
+    new Promise((resolve, reject) => {
+        console.log('Promise')
+        resolve();
+    }).then(() => {
+        console.log('then')
+    })
+
+    console.log('check')
+}
+
+check();
+
+for (let n = 0; n < 2000; n ++) {
+    console.log(n)
+}
+
+// 依次输出：getData  1---2000   Promise  check   then
+
+</script>
+</html>

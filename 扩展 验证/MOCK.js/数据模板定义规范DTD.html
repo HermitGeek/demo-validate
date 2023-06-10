@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>mock</title>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    const obj = {
+        id: 2,
+        name: 'zhangxin',
+        gender: 'man',
+        aaa: 'bbb'
+    };
+
+    const func = function() {
+        return 3332;
+    };
+
+    const result = Mock.mock({
+        'code': 0, // 支持键值对书写
+
+        // 字符串（范围表示重复次数）
+        'String1|2': 'string', // 重复 string 2 次，生成一个字符串
+        'String2|2-4': 'string', // 重复 string 2-4 次，生成一个字符串
+
+        // 数字 （小数点之前 范围表示范围、小数点之后 范围表示个数）
+        'Number1|+1': 2, // 初始值 2 的基础上 +1
+        'Number2|1-4': 2, // 初始值只确定类型, 生成一个 1-10范围 的数字
+        'Number3|1-20.2-4': 2, // 生成浮点值， 小数点之前 1-10大小；小数点之后 2-4位
+        'Number4|1-10.4': 2, // 生成浮点值， 小数点之前 1-10大小；小数点之后 2-4位
+
+        // 布尔
+        'Boolean1|1': true, // 生成一个布尔值，true false 概率为 1/2
+        'Boolean2|1-4': true, // 生成一个布尔值，true 概率为 1/(1+4) ; false 概率为 4/(1+4)
+
+        // 对象（范围表示个数）
+        'Object1|1': obj, // 选取对象中1个属性
+        'Object2|2-4': obj, // 选取对象中2-4个属性
+
+        // 数组（范围表示重复次数）
+        'Array1|1': [1, 2, 3, 4], // 随机选取数组中1个属性
+        'Array2|+1': [1, 2, 3, 4], // 随机选取数组中2-4个属性
+        'Array3|1-2': [1, 2, 3, 4], // 生成一个新数组，重复次数 1-2
+        'Array4|2': [1, 2, 3, 4], // 生成一个新数组，重复次数 2
+
+        // 函数
+        'Function': func, // 函数 func 的返回值
+
+        // 正则表达式：生成正则
+
+        // path
+        'path': {
+            first: '@FIRST',
+            middle: '@FIRST',
+            last: '@LAST',
+            full: '@first @middle @last'
+        }
+    });
+
+    console.log(result);
+</script>
+
+</html>

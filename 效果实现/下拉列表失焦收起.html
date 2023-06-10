@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            position: relative;
+            width: 200px;
+            outline: none;
+        }
+
+        .open-btn {
+            border: 1px solid red;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .list-wrapper {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 200px;
+            height: 300px;
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" tabindex="-1">
+        <h4 class="open-btn">选择列表2</h4>
+        <div class="list-wrapper" style="display: none;">
+            <ul class="list">
+
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    const main = document.querySelector('.main');
+    const btn = document.querySelector('.open-btn');
+    const list = document.querySelector('.list-wrapper');
+
+    btn.addEventListener('click', () => {
+        const display = list.style.display;
+
+        list.style.display = display === 'none' ? 'block' : 'none';
+    })
+
+    main.addEventListener('blur', () => {
+        list.style.display = 'none';
+    })
+
+</script>
+</html>

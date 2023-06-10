@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function isSymmetryNum(start, end) {
+        for (var i = start; i < end + 1; i++) {
+            var iInversionNumber =  +(i.toString().split("").reverse().join(""));
+
+            console.log(iInversionNumber);
+            // if (iInversionNumber === i && i > 10) {
+            //     console.log(i);
+            // }
+
+        }
+    }
+    isSymmetryNum(1, 10000);
+</script>
+
+</html>

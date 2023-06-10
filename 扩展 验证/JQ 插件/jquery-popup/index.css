@@ -1,0 +1,56 @@
+#popup-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+.popup-action {
+    width: 360px;
+    height: 160px;
+    background: #fff;
+    border-radius: 6px;
+    margin: auto;
+}
+
+.popup-action-content {
+    height: 110px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;    
+}
+
+.popup-action-footer {
+    height: 50px;
+    position: relative;
+}
+
+.popup-action-footer > button {
+    border: none;
+    height: 48px;
+    width: 49%;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.popup-action-footer > button:first-child {
+    border-radius: 0 0 0 6px;
+}
+
+.popup-action-footer > button:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+.popup-action-footer > button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    width: 1px;
+    height: 30px;
+    background: #ccc;
+}

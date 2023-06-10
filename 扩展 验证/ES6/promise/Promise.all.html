@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const p1 = function () {
+        throw new Error('报错了');
+
+        // return 1;
+    }
+
+    const p2 = function() {
+        throw new Error('报错了');
+        // return 2;
+    }
+
+    Promise.all([p1, p2])
+        .then((result) => {
+            console.log('then');
+            console.log(result)
+        })
+        .catch((e) => {
+            console.log('error')
+            console.log(e);
+        });
+
+    // 'then', ["hello", Error: 报错了]
+    // 解释：因为 p2 有自己的 catch, 错误才 p2 处被拦截
+</script>
+
+</html>

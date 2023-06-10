@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>a</title>
+    <style media="screen">
+        p {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="a.zip">下载</a>
+    <a href="http://www.baidu.com" id="test">  Click Me  </a>
+</body>
+<script type="text/javascript">
+    var test = document.getElementById('test');
+
+    function stopDefault(e) {
+        if (e && e.preventDefault)
+            e.preventDefault();
+        else {
+            window.event.returnValue = false;
+        }
+    }
+    test.onclick = function(e) {
+        stopDefault(e);
+    }
+</script>
+
+</html>

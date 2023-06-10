@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const cache = {};
+
+    const fn = (n) => {
+        if (n === 1 || n === 2) {
+            return cache[n] || (cache[n] = 1);
+        }
+
+        return cache[n] || (cache[n] = fn(n - 1) + fn(n - 2));
+    };
+</script>
+
+</html>

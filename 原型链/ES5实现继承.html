@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Parent() {
+        this.name = 'name';
+    }
+
+    function Child(age) {
+        Parent.call(this);
+        this.age = age;
+    }
+
+    function prototype(parent, child) {
+        function Super() {}
+        Super.prototype = parent.prototype;
+
+        const obj = new Super();
+
+        child.prototype = obj;
+        child.prototype.constructor = child;
+    }
+
+    prototype(Parent, Child);
+
+    const child = new Child(18);
+
+    console.log(child instanceof Child);
+    console.log(child instanceof Parent);
+    console.log(Child.prototype.constructor);
+    console.log(Parent.prototype.constructor);
+
+</script>
+</html>

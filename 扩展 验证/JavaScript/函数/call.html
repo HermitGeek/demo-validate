@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>call</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var arr = [1, 2, 3, 4];
+
+        var result1 = arr.toString();   // 1,2,3,4 使用了数组实例自己的toString()方法
+        var result2 = Object.prototype.toString.call(arr);  // 借用了对象的toString()方法
+        console.log(result1);
+        console.log(result2);
+    </script>
+    <script>
+        function fn () {
+            console.log(this);
+        }
+
+        fn.call();              // window
+        fn.call(null);          // window
+        fn.call(undefined);     // window
+    </script>
+</html>

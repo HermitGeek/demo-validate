@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+const Person = function (name, age) {
+
+    this.name = name;
+
+    this.age = age;
+
+}
+
+// Person.prototype.sayHi = function () {
+//     console.log("sayHi");
+// };
+Person.sayHello = function () {
+    console.log("sayHello");
+};
+
+var p = new Person("jack", 19);
+
+
+
+
+// 实例成员: p.name  p.age  p.sayHi
+// 静态成员: Person.sayHello
+</script>
+
+
+</html>

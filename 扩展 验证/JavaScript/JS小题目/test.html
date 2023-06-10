@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1 ~ 10000 对称数
+    var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    // 两位数
+    arr.forEach((item) => {
+        if (item !== '0') {
+            console.log(Number(item + item));
+        }
+    });
+
+    // 三位数
+    arr.forEach((item) => {
+        if (item !== '0') {
+            arr.forEach((value) => {
+                console.log(Number(item + value + item));
+            });
+        }
+    });
+
+    // 四位数
+    arr.forEach((item) => {
+        if (item !== '0') {
+            arr.forEach((value) => {
+                console.log(Number(item + value + value + item));
+            });
+        }
+    });
+</script>
+</html>

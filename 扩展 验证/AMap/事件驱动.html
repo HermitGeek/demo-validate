@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>事件驱动</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+
+        function f1() {
+            console.log('f1');
+            f1.trigger('click');
+        };
+
+        f1.addEventListener('click', f2);
+
+        function f2() {
+            console.log('f2');
+        };
+    </script>
+</html>

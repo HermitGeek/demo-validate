@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>点击后显示聚合标注</title>
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+
+        #loadingTip {
+            position: absolute;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            padding: 3px 10px;
+            background: red;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=2504908e2f1d6648b9c8ad1f9c0dc33"></script>
+    <script type="text/javascript">
+        //创建地图
+        var map = new AMap.Map('container', {
+            zoom: 10
+        });
+    </script>
+</body>
+
+</html>

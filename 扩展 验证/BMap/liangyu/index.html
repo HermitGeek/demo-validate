@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body,
+        html,
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+
+        html {
+            position: relative;
+        }
+
+        .title {
+            position: fixed;
+            color: red;
+            top: 0;
+            left: 20px;
+            z-index: 2000;
+            font-weight: 700;
+        }
+
+        .anchorBL {
+            display: none;
+        }
+    </style>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=OnLHNAr2IUm1jdGnuBYfEhvK"></script>
+    <script src="./data.js"></script>
+    <title>poi打点</title>
+</head>
+
+<body>
+    <div id="allmap"></div>
+    <!-- 1 朝阳东部_学校
+    2 朝阳东部_政府
+    3 链家小区数据（朝阳东部）
+    4 链家小区数据（通州）
+    5 链家小区数据（燕郊）
+    6 通州_学校数据
+    7 通州_政府数据
+    8 燕郊_学校
+    9 燕郊_政府机关 -->
+
+    <!-- <p class="title">朝阳东部_学校</p> -->
+    <!-- <p class="title">朝阳东部_政府</p> -->
+    <!-- <p class="title">朝阳东部_小区</p> -->
+    <!-- <p class="title">通州_小区</p> -->
+    <!-- <p class="title">燕郊_小区</p> -->
+    <!-- <p class="title">通州_学校数据</p> -->
+    <!-- <p class="title">通州_政府数据</p> -->
+    <!-- <p class="title">燕郊_学校</p> -->
+    <p class="title">燕郊_政府机关</p>
+</body>
+
+</html>
+<script type="text/javascript">
+
+    console.log(poiData);
+    const poi = poiData[9];
+
+
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom('北京', 12);
+    map.enableScrollWheelZoom();
+
+    poi.forEach((poi) => {
+        const marker = new BMap.Marker(new BMap.Point(poi.lng, poi.lat));
+        map.addOverlay(marker);
+    });
+
+    // poi.forEach((poi) => {
+    //     const marker = new BMap.Marker(new BMap.Point(poi.lng, poi.lat), {
+    //         // eslint-disable-next-line no-undef
+    //         icon: new BMap.Icon('./icon.png', new BMap.Size(20, 20))
+    //     });
+    //     map.addOverlay(marker);
+    // });
+</script>

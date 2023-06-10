@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const fn = (n) => {
+        const cache = {};
+        let one = 1;
+        let two = 1;
+        let three;
+
+        if (n === 1 || n === 2) {
+            return 1;
+        }
+
+        for(let i = 3; i <= n; i ++) {
+            three = one + two;
+            one = two;
+            two = three;
+        }
+
+        return three;
+    }
+</script>
+</html>

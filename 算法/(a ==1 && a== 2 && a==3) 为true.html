@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // const a = {
+    //     i: 0,
+    //     toString() {
+    //         return ++ a.i;
+    //     }
+    // }
+
+    let value = 0;
+
+    Object.defineProperty(window, 'a', {
+        get() {
+            return ++value;
+        }
+    })
+
+    console.log(a == 1 && a == 2 && a == 3)
+</script>
+</html>

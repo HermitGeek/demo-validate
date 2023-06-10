@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,html  {
+      background: #ccc;
+      margin:0;
+      padding:0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="main2" style="width: 243px;height:156px;"></div>
+
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart2 = echarts.init(document.getElementById('main2'));
+
+  // 指定图表的配置项和数据
+  var option2 = {
+    title: {
+      text: '年龄分布',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',  // 图例组件朝向
+        selectedMode: false,
+        left: 20,
+        top: 24,
+        itemWidth: 16,
+        itemHeight: 12,
+        itemGap: 10,  // 图例每项之间的间隔
+        data: ['00后','90后','80后','70后','其他']
+    },
+    color: ['#21AAE1','#19E17E','#FEC300','#E62F29','#C71CE6'],
+    calculable : true,
+    series : [
+        {
+            name:'年龄分布',
+            type:'pie',
+            radius : ['30%' ,'72%'],
+            center : [160, 90],
+            roseType : 'radius',
+            label: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            lableLine: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            data:[
+              {value:500, name:'00后'},
+              {value:400, name:'90后'},
+              {value:300, name:'80后'},
+              {value:200, name:'70后'},
+              {value:100, name:'其他'}
+            ]
+        }
+    ]
+};
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart2.setOption(option2);
+</script>
+
+</html>

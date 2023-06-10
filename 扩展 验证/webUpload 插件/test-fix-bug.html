@@ -1,0 +1,67 @@
+<!-- https://www.jianshu.com/p/aa386f25150b -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./webuploader-0.1.5/webuploader.css">
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="./webuploader-0.1.5/webuploader.js"></script>
+</head>
+
+<body>
+    <!--dom结构部分-->
+    <div id="uploader-demo">
+        <!--用来存放item-->
+        <div id="fileList" class="uploader-list"></div>
+        <div id="filePicker"></div>
+    </div>
+</body>
+<script>
+    var uploader = WebUploader.create({
+        auto: true,                 // 选完文件后，是否自动上传。
+        pick: {                     //选择图片按钮
+            id: '#filePicker',
+            label: '点击选择图片'
+        },
+        accept: {                   // 只允许选择图片文件。
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png'
+        },
+        // fileNumLimit: obj.fileNumLimit, //验证文件总数量, 超出则不允许加入队列
+        // fileSingleSizeLimit: obj.fileSingleSizeLimit, //5*1024*1024,//验证单个文件大小是否超出限制, 超出则不允许加入队列
+        // swf文件路径
+        // 文件接收服务端。
+        server: 'http://craes.weiresearch.com/craesphoto/photogroup/photo/save',
+        method: 'POST',
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        
+        
+        thumb: {
+            width: 110,
+            height: 110,
+            // 图片质量，只有type为`image/jpeg`的时候才有效。
+            quality: 70,
+            // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+            allowMagnify: true,
+            // 是否允许裁剪。
+            crop: true,
+            // 为空的话则保留原有图片格式。
+            // 否则强制转换成指定的类型。
+            type: '' //'image/jpeg'
+        },
+        duplicate: true,
+        compress: false,
+        // resize: obj.resize || false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    });
+
+    uploader.on('uploadSuccess', function (file, response) {
+
+        console.log(file, response);
+    });
+</script>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const ajax = ({
+        url,
+        method,
+        params,
+        success,
+        fail
+    }) => {
+
+        const xhr = new XMLHttpRequest();
+
+
+        if (method === 'GET') {
+            const searchParmas = '?'
+
+            for (const [key, value] of Object.entries(params)) {
+                searchParmas += `${key}=${value}&`
+            }
+
+            searchParmas.slice(0, -1);
+
+
+            xhr.open(method, `${url}${searchParmas}`)
+            xhr.send(null)
+        } else if (method === 'POST') {
+            XHR.open(method, url)
+
+            xhr.send(params)
+        }
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+
+                if (xhr.status > 200 && xhr.status < 300) {
+                    success && success(JSON.parse(xhr.responseText));
+
+                } else {
+                    fail && fail(xhr.status)
+                }
+            }
+        }
+    }
+</script>
+
+</html>

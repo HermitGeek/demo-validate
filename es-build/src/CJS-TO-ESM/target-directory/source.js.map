@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../source.js"],
+  "sourcesContent": ["const obj = {\n    image: require('./image.png')\n}\n\nmodule.exports = {\n    obj\n};"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA,MAAM,MAAM;AAAA,IACR,OAAe;AAAA;AAGnB,SAAO,UAAU;AAAA,IACb;AAAA;AAAA;",
+  "names": []
+}

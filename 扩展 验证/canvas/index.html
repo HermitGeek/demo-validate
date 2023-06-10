@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>html5圆形</title>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            //canvas的2d上下文  
+            var ctx = document.getElementById("canvas").getContext("2d");
+            //圆1  
+            ctx.beginPath();
+            ctx.arc(150, 45, 35, 0, Math.PI * 2, false);
+            ctx.fillStyle = "rgba(192,80,77,0.7)"; //半透明的红色  
+            ctx.fill();
+            ctx.strokeStyle = "rgba(192,80,77,1)"; //红色  
+            ctx.stroke();
+            //圆2  
+            ctx.beginPath();
+            ctx.arc(125, 95, 35, 0, Math.PI * 2, false);
+            ctx.fillStyle = "rgba(155,187,89,0.7)"; //半透明绿色  
+            ctx.fill();
+            ctx.strokeStyle = "rgba(155,187,89,1)"; //绿色  
+            ctx.stroke();
+            //圆3  
+            ctx.beginPath();
+            ctx.arc(175, 95, 35, Math.PI * 2, false);
+            ctx.fillStyle = "rgba(128,100,162,0.7)"; //半透明的紫色  
+            ctx.fill();
+            ctx.strokeStyle = "rgba(128,100,132,1)"; //紫色  
+            ctx.stroke();
+        });
+    </script>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <img id="img" src="" alt="">
+</body>
+
+<script>
+    var canvas = document.getElementById("canvas");
+
+    // canvas.toBlob(function (blob) {
+    //     console.log(blob);
+    // });
+
+    // console.log(canvas.toBlob);
+
+    // console.log(canvas.toDataURL());
+
+    document.getElementById('img').src = canvas.toDataURL();
+</script>
+<script>
+    //19、 通过原型的方式实现动物类继承，动物都有吃东西的行为,狗都有看家的行为,动物都有性别和年龄，狗都有毛色。要求实例化对象,并调用吃和看家的方法
+
+    //让Dog创建的实例对象继承自DongWu构造函数
+    function DongWu() {
+        this.xingBie = '雄';
+        this.age = 5;
+    }
+    DongWu.prototype.eat = function () {
+        console.log("吃肉");
+    }
+
+    //开始继承操作
+    function Dog() {
+        this.color = '金色';
+    }
+    //希望dog可以使用dongwu的所有属性和方法
+    //如果dog使用属性和方法是 自身没有 会去原型对象中进行查找
+    //可以将dog的原型对象设置为实例对象 如下
+    Dog.prototype = new DongWu();
+
+    //可以设置自身具有的功能
+    Dog.prototype.jiao = function () {
+        console.log("wangwang");
+    }
+
+
+    //创建dog的实例对象
+    var dog = new Dog();
+
+    //使用继承的属性和方法
+    console.log(dog.xingBie, dog.age)
+    dog.eat();
+    dog.xingWei();
+
+    //使用自身的属性和方法
+    dog.jiao()
+    console.log(dog.color)
+</script>
+
+</html>

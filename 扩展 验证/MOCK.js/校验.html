@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>校验</title>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    var template = {
+        'key|1-10': '★'
+    }
+    const result2 = Mock.toJSONSchema(template)
+
+    console.log(result2);
+</script>
+
+</html>

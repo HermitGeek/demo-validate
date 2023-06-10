@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    Array.prototype.getLevel = function () {
+        let end = false;
+        let level = 2;
+            
+        // while(!end) {
+        //     end  = this.flat(level).every((item) => !Array.isArray(item))
+            
+        //     if (!end) {
+        //         level + 1
+        //     }
+        // }
+        
+        end  = this.flat(level).every((item) => !Array.isArray(item))
+        
+        console.log(end);
+            
+            // if (!end) {
+            //     level + 1
+            // }
+    };
+    
+    
+    [1, 2, 3, 4, [5], [[6], [7]]].getLevel()
+    
+
+</script>
+</html>

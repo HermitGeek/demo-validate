@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+    <p class="pp">pppppp</p>
+
+</body>
+<script>
+    $.ajax({
+        type: "GET",
+        url: "http://demo.topser.weiresearch.com/cre/pd/city/getList",
+        success: function (data) {
+            console.log(data);
+        },
+        beforeSend: function (request) {
+            request.setRequestHeader("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X)"); 
+        }
+    });
+</script>
+</html>

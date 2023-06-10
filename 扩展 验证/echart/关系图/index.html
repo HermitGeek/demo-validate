@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>折线图</title>
+    <style media="screen">
+        body,
+        html {
+            background: #ccc;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height:600px;"></div>
+</body>
+<script src="../echarts.min.js"></script>
+<script src="./data.2.js"></script>
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    console.log(commPaths);
+
+    const option = {
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series: [{
+            type: 'tree',
+
+            data: commPaths,
+
+            top: '10%',
+            bottom: '10%',
+            left: '10%',
+            right: '10%',
+
+            layout: 'radial',
+
+            symbol: 'emptyCircle',
+
+            initialTreeDepth: 3,
+
+            animationDurationUpdate: 750,
+
+            label: {
+                normal: {
+                    show: false,
+                    color: '#0a1227',
+                    position: ['2250%', '2250%']
+                }
+            },
+
+            lineStyle: {
+                color: '#235cde'
+            },
+
+
+            symbolSize: 6,
+
+            itemStyle: {
+                normal: {
+                    borderColor: '#235cde',
+                    borderWidth: 6,
+                },
+
+                emphasis: {
+                    borderColor: '#7c3cde',
+                    borderWidth: 6,
+                }
+            }
+        }]
+    };
+
+    const option1 = {
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series: [{
+            type: 'tree',
+
+            data: commPaths,
+
+            top: '18%',
+            bottom: '14%',
+
+            layout: 'radial',
+
+            symbol: 'emptyCircle',
+
+            symbolSize: 6,
+
+            initialTreeDepth: 3,
+
+            animationDurationUpdate: 750,
+
+            lineStyle: {
+                color: '#235cde'
+            },
+
+            label: {
+                normal: {
+                    show: true,
+                    color: 'red',
+                    rotate: -45,
+                    position: ['2250%', '2250%']
+                }
+            },
+
+
+            itemStyle: {
+                normal: {
+                    borderColor: '#235cde',
+                    borderWidth: 6,
+                },
+
+                emphasis: {
+                    borderColor: '#7c3cde',
+                    borderWidth: 6,
+                }
+            }
+
+        }]
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart1.setOption(option1);
+</script>
+
+</html>

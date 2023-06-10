@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var age = 38;
+        var obj = {
+            age: 18,
+            getAge: function () {
+                function fn() {
+                    console.log(this.age);
+                }
+
+                fn();
+            }
+        };
+
+        obj.getAge();
+    </script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function split(str) {
+        const reg = /\d{1,4}(?=(\d{4})+$)/g;
+        // 代表 四个数字结尾，前面每四个数字是一组，最前面一组可以是一到四个数字
+        // 匹配项就是 最后四个数字除外的 每一组数字
+
+        return str.replace(reg, '$& ');
+    }
+
+    console.log(split('11728292020202893'))
+</script>
+</html>

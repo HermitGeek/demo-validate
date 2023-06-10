@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function generatorToAsync(fn) {
+        const gen = fn();
+
+
+        return new Promise((resolve, reject) => {
+            const step = (type, param) => {
+                let result = null;
+
+                try {
+                    result = gen[type](param);
+                } catch (error) {
+                    reject(error)
+                }
+
+
+                const {done, value} = result;
+
+                if (done) {
+                    resolve(value)
+                } else {
+                    Promise.resolve(value).then((param) => {
+                        step('next', param)
+                    }).catch((error) => {
+                        step('throw', error)
+                    })
+                }
+
+            }
+
+            step('next');
+        })
+    }
+
+
+
+    const getData = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(2)
+                resolve(2000)
+            }, 2000);
+        })
+    }
+
+    function* fn() {
+        yield console.log(1);
+        yield getData();
+        yield console.log(3);
+
+        return 4;
+    }
+
+    generatorToAsync(fn).then((param) => {
+        console.log(param)
+    }).catch((error) => {
+        console.log(error)
+    });
+</script>
+
+</html>

@@ -1,0 +1,10 @@
+@mixin sexy-border($width: 1px, $color) {
+    border: {
+        width: $width;
+        color: $color;
+    }
+}
+
+p {
+    @include sexy-border($width: 1px, $color: blue);
+}

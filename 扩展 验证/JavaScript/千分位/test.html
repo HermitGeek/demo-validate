@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script language="javascript" type="text/javascript">
+    function comdify(n) {　　
+        var re = /\d{1,3}(?=(\d{3})+$)/g;　　
+        var n1 = String(n).replace(/^(\d+)((\.\d+)?)$/, function (s, s1, s2) {
+            return s1.replace(re, "$&,") + s2;
+        });　　
+        return n1;
+    }
+
+    console.log(comdify(1212133345.78));
+</script>
+
+<body>
+    <!-- <input type="text" value="1212133345.78" onblur="this.value=comdify(this.value)"> -->
+</body>
+
+</html>

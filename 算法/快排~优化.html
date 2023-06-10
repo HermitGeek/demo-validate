@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const arr = [4, 6, 8, 1, 2, 3];
+    const sort = (arr) => {
+        if (arr.length < 2) {
+            return arr;
+        }
+
+        const re = [arr[0]];
+        
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[0] < arr[i]) {
+                re.push(arr[i])
+            } else {
+                re.unshift(arr[i])
+            }
+        }
+
+        const index = re.indexOf(arr[0]);
+
+        return sort(re.slice(0, index)).concat(arr[0], sort(re.slice(index + 1)))
+    }
+
+    
+    sort(arr)
+
+</script>
+
+</html>

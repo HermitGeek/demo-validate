@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)'></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    var objects = [{
+        'a': 1
+    }, {
+        'b': 2
+    }];
+
+    var deep = JSON.parse(JSON.stringify(objects));
+    objects[0].a = 222;
+
+    console.log(deep);
+</script>
+
+</html>

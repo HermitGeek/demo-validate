@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>22</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(Object.prototype.toString());               // [object Object]
+    console.log(Math.toString());                           // [object Math]
+
+    console.log(Object.prototype.toString.call([]));        // [object Array]
+    console.log(Object.prototype.toString.call('aaa'));     // [object String]
+    console.log(Object.prototype.toString.call(111));       // [object Number]
+    console.log(Object.prototype.toString.call(new Date())); // [object Date]
+
+    console.log(Object.prototype.toString.call(Array));     // [object Function]
+    console.log(Object.prototype.toString.call(String));    // [object Function]
+    console.log(Object.prototype.toString.call(Number));    // [object Function]
+    console.log(Object.prototype.toString.call(Date));      // [object Function]
+</script>
+
+</html>

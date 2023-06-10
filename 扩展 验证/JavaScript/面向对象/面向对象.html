@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>mianxiang</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var Fn = function () {
+            this.name = 'zhangxin'
+        }
+
+        Fn.prototype = {
+            age: 18
+        };
+
+        var obj = new Fn();
+
+        var result1 = obj.hasOwnProperty('name');
+        var result2 = obj.hasOwnProperty('age');
+        console.log(result1);  // true
+        console.log(result2); // false
+    </script>
+    <script>
+        var date = new Date();
+
+        console.log(date);  // Sun Nov 12 2017 16:57:57 GMT+0800 (CST)
+        console.log(date.toLocaleString()); // 2017/11/12 下午4:57:57
+    </script>
+
+    <script>
+        var obj1 = {
+            age: 12,
+            name: 'zhangx'
+        };
+
+        var re = Object.prototype.valueOf.call('333');
+        console.log(re);
+    </script>
+</html>

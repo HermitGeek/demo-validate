@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>mapv-label</title>
+
+	<style type="text/css">
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+
+		.overlay-box {
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			position: fixed;
+		}
+	</style>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+	<script src="http://mapv.baidu.com/build/mapv.min.js"></script>
+</head>
+
+<body>
+
+	<div id="map"></div>
+	<canvas id="canvas"></canvas>
+
+</body>
+<script>
+	// html 含动态数据
+	const templateInit = (dataInfo) => {
+		const headHtml = '<p>标题</p>';
+		const footHtml =
+			'<p>姓名' + dataInfo.name + '</p>';
+
+		return headHtml + footHtml;
+	};
+
+
+	/**
+	 * 1. 构造函数
+	 * @param {Array} position  自定义覆盖物构造函数
+	 */
+	var LabelOverlay = function(position) {
+		this._position = position;
+	}
+
+	// 2. 继承API的BMap.Overlay
+	LabelOverlay.prototype = new BMap.Overlay();
+
+	// 3. 实现初始化方法 （自调用一次，方法内格式固定）
+	LabelOverlay.prototype.initialize = function(map) {
+		this._map = map; // 初始化 方法自调用，API将map实例传入
+		this._root = document.createElement('div'); // 创建根元素
+
+		map.getPanes().markerPane.appendChild(this._root); // 添加覆盖物到容器列表中
+
+		return this._root;
+	};
+
+	// 4. 实现绘制方法 （初始自调用，地图缩放等级改变自调用）
+	LabelOverlay.prototype.draw = function() {
+
+		this.setPosition(this._position);
+	};
+
+	// 5. 自己封装的方法，需自己调用 （自己封装）
+	LabelOverlay.prototype.update = function(position, dataInfo) {
+		this._root.className = 'overlay-box'; // 初始化根元素样式
+		this._root.innerHTML = templateInit(dataInfo);
+		this._position = position; // 更新覆盖物位置数据
+
+		this.setPosition(); // 位置坐标转换，更新覆盖物位置
+	};
+
+	// 6. 更新自定义覆盖物位置 地理坐标 转为 像素坐标 （自己封装）
+	LabelOverlay.prototype.setPosition = function() {
+		const point = new BMap.Point(this._position[0], this._position[1]);
+		const position = this._map.pointToOverlayPixel(point);
+
+		this._root.style.left = `${position.x}px`;
+		this._root.style.top = `${position.y - 0}px`;
+	};
+</script>
+
+<script>
+	// 百度地图API功能
+	var map = new BMap.Map("map", {
+		enableMapClick: false
+	}); // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.06152510443653, 39.673862907416876), 15); // 初始化地图,设置中心点坐标和地图级别
+	map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+
+
+	// mapv 处理数据
+	const data = [];
+	const gridList = [{
+			"grid": [
+				[116.06152510443653, 39.673862907416876],
+				[116.0615233771919, 39.6761246059897],
+				[116.05856601794541, 39.676153389210825],
+				[116.05856774663613, 39.67389169016162]
+			],
+			"value": 2,
+			"name": '小王'
+		},
+		{
+			"grid": [
+				[116.06448405431578, 39.673828014948356],
+				[116.06448232857208, 39.67608971312688],
+				[116.0615233771919, 39.6761246059897],
+				[116.06152510443653, 39.673862907416876]
+			],
+			"value": 3,
+			"name": '小红'
+		},
+		{
+			"grid": [
+				[116.06744424718194, 39.673787973735266],
+				[116.0674425229695, 39.67604967161389],
+				[116.06448232857208, 39.67608971312688],
+				[116.06448405431578, 39.673828014948356]
+			],
+			"value": 5,
+			"name": '小明'
+		}
+	];
+
+	gridList.forEach((grids) => {
+		data.push({
+			geometry: {
+				type: 'Polygon',
+				coordinates: [
+					grids.grid
+				]
+			},
+			count: grids.value,
+			data: {
+				name: grids.name,
+				position: grids.grid[0]
+			}
+		})
+	});
+
+	// 弹出框 坐标
+	var point = new BMap.Point(116.06152510443653, 39.673862907416876);
+	var overlayConsumer = null; // 自定义覆盖物创建开关
+	var optionsMapv = {
+		size: 40,
+		strokeStyle: 'rgba(255, 255, 255, .5)', // 描边颜色
+		lineWidth: 1,
+		gradient: {
+			0.2: 'rgba(45, 223, 130, 0.2)',
+			0.4: 'rgba(45, 223, 130, 0.4)',
+			0.6: 'rgba(45, 223, 130, 0.6)',
+			0.8: 'rgba(45, 223, 130, 0.8)',
+			1.0: 'rgba(45, 223, 130, 1)'
+		},
+		draw: 'intensity',
+		methods: {
+			click: (gridOverlay) => {
+				if (gridOverlay !== null) {
+					// 更新自定义覆盖物的位置
+					if (!overlayConsumer) {
+						overlayConsumer = new LabelOverlay(gridOverlay.data.position);
+						map.addOverlay(overlayConsumer);
+
+						createSwitch = false;
+					}
+
+					overlayConsumer.update(gridOverlay.data.position, gridOverlay.data);
+				}
+			}
+		}
+	};
+
+
+	var dataSet = new mapv.DataSet(data);
+	var mapvLayer = new mapv.baiduMapLayer(map, dataSet, optionsMapv);
+</script>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+
+  </style>
+</head>
+
+<body>
+  <div id="main" style="width:500px;height:500px;"></div>
+</body>
+<script src="../assests/echarts.js"></script>
+<script src="../assests/echarts-gl.js"></script>
+<script src="../assests/jquery-1.12.2.min.js"></script>
+
+<script>
+  var myChart = echarts.init(document.getElementById('main'));
+
+  $.getJSON('./data-1491897030366-r1Ap5Wcag.json', function (populationData) {
+
+    var max = -Infinity;
+    var min = Infinity;
+    populationData.forEach(function (item) {
+        max = Math.max(Math.log(item.value), max);
+        min = Math.min(Math.log(item.value), min);
+    });
+
+    var regions = populationData.map(function (item) {
+        return {
+            name: item.name,
+            height: (Math.log(item.value) - min) / (max - min) * 3
+        };
+    })
+
+    myChart.setOption(option = {
+        backgroundColor: '#cdcfd5',
+        geo3D: {
+            map: 'world',
+            shading: 'lambert',
+
+            lambertMaterial: {
+                detailTexture: '../assests/data-1491896059428-B1QbPbq6e.jpg',
+                textureTiling: 20
+            },
+
+            postEffect: {
+                enable: true,
+                SSAO: {
+                    enable: true,
+                    radius: 3,
+                    quality: 'high'
+                }
+            },
+            groundPlane: {
+                show: true
+            },
+            light: {
+                main: {
+                    intensity: 1,
+                    shadow: true,
+                    shadowQuality: 'high',
+                    alpha: 30
+                },
+                ambient: {
+                    intensity: 0
+                },
+                ambientCubemap: {
+                    exposure: 2,
+                    diffuseIntensity: 0.3
+                }
+            },
+            viewControl: {
+                distance: 50
+            },
+
+            regionHeight: 0.5,
+
+            regions: regions
+        }
+    });
+
+});
+</script>
+
+</html>

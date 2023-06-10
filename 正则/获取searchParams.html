@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function getUrlQueryParams(url) {
+        var params = {};
+        var regex = /[\?&]([a-zA-Z_]+)=([\w\-\.]*)/g;
+        while ((results = regex.exec(url))) {
+
+            params[results[1]] = results[2];
+        }
+        
+
+        return params;
+    }
+
+    console.log(getUrlQueryParams('https://www.zhipin.com/web/geek/resume?ka=header-resume&name=zhangxin'))
+</script>
+
+</html>

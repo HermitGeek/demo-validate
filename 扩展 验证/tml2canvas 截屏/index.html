@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+    <script src="./assets/html2canvas.js"></script>
+    <title>Document</title>
+    <style>
+ 
+        .image-container {
+            border: 1px solid red;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="capture" style="padding: 10px; background: #f5da55">
+        <h4 style="color: #000; ">Hello world!</h4>
+        <iframe src="./assets/image2vector.svg" style="display:block;width:330px;height:240px;border:none;"></iframe>
+
+    </div>
+
+    <button id="btn"> 截屏 </button>
+
+    <div class="image-container">
+        <img src="" alt="" id="img">
+    </div>
+</body>
+<script>
+    function nodeToString(node) {
+        var tmpNode = document.createElement("div");
+        tmpNode.appendChild(node.cloneNode(true));
+        var str = tmpNode.innerHTML;
+        tmpNode = node = null; 
+        return str;
+    }
+
+    function showQRCode() {
+        var nodesToRecover = [];
+        var nodesToRemove = [];
+        var svgElements = document.querySelectorAll('svg');
+
+
+        svgElements.forEach((node) => {
+            var parentNode = node.parentNode;
+            const strNode = nodeToString(node);
+            const canvas = document.createElement('canvas');
+            canvas.id = 'canvas';
+            parentNode.appendChild(canvas);
+
+            canvg('canvas', strNode);
+
+            parentNode.removeChild(node);
+        });
+    }
+
+    showQRCode();
+
+    document.querySelector("#btn").addEventListener('click', () => {
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+            // document.body.appendChild(canvas)
+            console.log(canvas.toDataURL());
+
+            document.querySelector("#img").src = canvas.toDataURL();
+        });
+    });
+</script>
+
+</html>

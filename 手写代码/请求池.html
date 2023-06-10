@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        请设计一种请求池，支持传入最大并发数，使得如下代码呈现如图的表现：
+        function createRequest({ pool = 5 }) {}
+        const request = createRequest({ pool: 3 });
+        Array(10).fill(1).forEach(() => request('https://www.typescriptlang.org/page-data/tools/page-data.json'))
+    */
+    const createRequest = ({pool}) => {
+        const queue = [];
+
+        return (url) => {
+            queue.push(url);
+            console.log('发请求');
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #animate {
+        width: 100px;
+        height: 100px;
+        background: yellowgreen;
+    }
+</style>
+<body>
+
+    <div id="animate"></div>
+</body>
+<script>
+    var element = document.getElementById('animate');
+    element.style.position = 'absolute';
+
+    var start = null;
+
+    function step(timestamp) {
+        console.log(timestamp)
+        if (!start) start = timestamp;
+        var progress = timestamp - start;
+        // 元素不断向左移，最大不超过200像素
+        element.style.left = Math.min(progress / 10, 200) + 'px';
+        // 如果距离第一次执行不超过 2000 毫秒，
+        // 就继续执行动画
+        if (progress < 2000) {
+            window.requestAnimationFrame(step);
+        }
+    }
+
+    window.requestAnimationFrame(step);
+</script>
+</html>

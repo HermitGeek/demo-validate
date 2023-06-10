@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 600px;
+            border: 1px solid red;
+            overflow-y: scroll;
+
+            transition: all 2s;
+        }
+
+        .container {
+            width: 100%;
+            transition: all 2s;
+        }
+
+        .item {
+            width: 100%;
+            height: 60px;
+            transition: all 2s;
+        }
+    </style>
+</head>
+<body>
+    <button type="" id="btn">btn</button>
+    <div class="box" id="box">
+        <ul class="container" id="container">
+            <li class="item">1111</li>
+            <li class="item">222</li>
+            <li class="item">333</li>
+            <li class="item">444</li>
+            <li class="item">555</li>
+            <li class="item">666</li>
+            <li class="item">777</li>
+            <li class="item">888</li>
+            <li class="item">999</li>
+            <li class="item">10</li>
+            <li class="item">11</li>
+            <li class="item">12</li>
+            <li class="item">13</li>
+            <li class="item">14</li>
+            <li class="item">15</li>
+            <li class="item">16</li>
+            <li class="item">17</li>
+            <li class="item">18</li>
+            <li class="item">19</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+    var container = document.getElementById('container');
+
+    btn.addEventListener('click', () => {
+        box.scrollTo(0, 120);
+    });
+</script>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "projecy01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "init": "^0.1.2",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "ts": "tsc -p ./tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            height: 300px;
+            width: 600px;
+            overflow: hidden;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .img-list {
+            list-style: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+
+            transition: left 0.4s linear;
+        }
+
+        .img-item {
+            flex: none;
+            height: 300px;
+            width: 600px;
+            text-align: center;
+            font-size: 36px;
+            line-height: 300px;
+        }
+
+        .point-list {
+            display: flex;
+            list-style: none;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .point-item {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+        }
+
+        .point-item:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .point-item.active {
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="img-list">
+            <li class="img-item">图片1</li>
+            <li class="img-item">图片2</li>
+            <li class="img-item">图片3</li>
+            <li class="img-item">图片4</li>
+        </ul>
+    </div>
+</body>
+<script>
+    const init = ({
+        isRoll = false, // 是否滚动
+        rollInterval = 3000, // 滚动间隔
+        rollTime = 400 // 滚动时间
+    } = {}) => {
+        const container = document.querySelector('.container');
+        const imgs = [...document.querySelectorAll('.img-item')];
+        const imgsParent = document.querySelector('.img-list');
+        let intervalId = null;
+        let activeIndex = 0;
+
+
+        // 开始滚动
+        function startRoll() {
+            const ul = document.querySelector('.img-list');
+
+            intervalId = setInterval(() => {
+                activeIndex += 1;
+                if (activeIndex === imgs.length) {
+                    activeIndex = 0;
+
+                    ul.style.transition = 'none';
+                } else {
+                    ul.style.transition = `left ${rollTime/1000}s linear`;
+                }
+
+                activatePoint(activeIndex);
+                ul.style.left = `-${activeIndex * 600}px`;
+            }, rollInterval + rollTime);
+        }
+
+        // 创建point
+        (() => {
+            const ul = document.createElement('ul');
+
+            imgs.forEach((item, index) => {
+                const li = document.createElement('li');
+
+                li.classList.add('point-item');
+                li.addEventListener('click', () => {
+                    clearInterval(intervalId);
+                    activeIndex = index;
+                    activatePoint(activeIndex);
+                    imgsParent.style.left = `-${activeIndex * 600}px`;
+
+                    // 自动滚动
+                    if (isRoll) {
+                        startRoll();
+                    }
+                })
+
+                ul.appendChild(li);
+            });
+
+            ul.classList.add('point-list');
+            container.appendChild(ul);
+            activatePoint(activeIndex);
+        })();
+
+        // 激活 point
+        function activatePoint(activeIndex) {
+            const points = [...document.querySelectorAll('.point-item')];
+
+            points.forEach((item, index) => {
+                if (index === activeIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            }) 
+        }
+
+        // 自动滚动
+        if (isRoll) {
+            startRoll();
+        }
+    };
+
+
+    init({
+        isRoll: true
+    });
+</script>
+
+</html>

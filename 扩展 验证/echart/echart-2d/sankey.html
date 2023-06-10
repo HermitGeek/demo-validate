@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,
+    html {
+      background: #ccc;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="main5" style="width: 500px;height:300px;"></div>
+
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart5 = echarts.init(document.getElementById('main5'));
+
+
+  const nodes = [{
+    name: "北京"
+  }, {
+    name: "上海"
+  }, {
+    name: "天津"
+  }, {
+    name: "广州"
+  }, {
+    name: "深圳"
+  }]
+
+  const links = [{
+    source: "北京",
+    target: "天津",
+    value: 10
+  }, {
+    source: "北京",
+    target: "上海",
+    value: 10
+  }, {
+    source: "北京",
+    target: "广州",
+    value: 10
+  }, {source: "上海",target: "广州",value: 10}, {
+    source: "上海",
+    target: "天津",
+    value: 10
+  }, {
+    source: "天津",
+    target: "广州",
+    value: 10
+  }, {
+    source: "广州",
+    target: "深圳",
+    value: 10
+  }];
+
+  const option = {
+    title: {
+      text: 'Sankey Diagram'
+    },
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove'
+
+    },
+    series: [{
+      type: 'sankey',
+      layout: 'none',
+      data: nodes,
+      links: links,
+      itemStyle: {
+        normal: {
+          borderWidth: 1,
+          borderColor: '#aaa'
+        }
+      },
+      lineStyle: {
+        normal: {
+          curveness: 0.5
+        }
+      }
+    }]
+  }
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart5.setOption(option);
+</script>
+
+</html>

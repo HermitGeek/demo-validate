@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+    <form name="form1" id="form1">
+        <p>photo:
+            <input type="file" name="photo" id="photo">
+        </p>
+        <p>
+            <input type="button" name="b1" value="submit" onclick="fsubmit()" />
+        </p>
+    </form>
+    <div id="result"></div>
+</body>
+<script>
+    function fsubmit() {
+        var form = document.getElementById("form1");
+        var fd = new FormData(form);
+
+        console.log(JSON.stringify(fd))
+        fd.append('projectId', 22);
+            fd.append('type', 33);
+        console.log(fd);
+        $.ajax({
+            url: "http://test.cifi.weiresearch.com/cifi/0.1/project/ppt/img/upload",
+            type: "POST",
+            data: fd,
+            processData: false, // 告诉jQuery不要去处理发送的数据
+            contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+        });
+        return false;
+    }
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <canvas id="canvas" width="500" height="500"></canvas>
+    </div>
+</body>
+<script>
+    const data = [1.2, 3, 1.5, 2.8, 3.8];
+
+    var ctx = document.getElementById("canvas").getContext("2d");
+    console.log(ctx);
+    ctx.beginPath();
+    ctx.strokeStyle = "green"; //红色 
+    data.forEach((item, index) => {
+        ctx.lineTo((50 * index) + 3, item * 10);
+        ctx.fillText(index, 50 * index, (item * 10) - 4);
+    });
+    ctx.stroke();
+</script>
+
+</html>

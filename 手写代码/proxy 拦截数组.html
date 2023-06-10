@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const arr = new Proxy([], {
+        set(target, key, value){
+            console.log('set', target, key, value)
+
+            target[key] = value;
+            // Reflect.set(target, key, value)
+        }
+    });
+
+    Object.setPrototypeOf(arr, Array.prototype);
+</script>
+</html>

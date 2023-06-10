@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div"></div>
+</body>
+<script>
+    // JS封装实现 test().add().log()
+    function Fn() {
+        this.test = () => {
+            return this;
+        }
+
+        this.add = () => {
+            return this;
+        }
+
+        this.log = () => {
+            return this;
+        }        
+    }
+
+    console.log((new Fn()).test().add());
+</script>
+</html>

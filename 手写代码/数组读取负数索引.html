@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function fn(arr) {
+        return new Proxy([...arr], {
+            get(target, key) {
+                const index = Number(key);
+                const propKey = index > -1 ? index : String(index + target.length);
+
+                if (target[index] === undefined) {
+                    return undefined;
+                }
+
+                return target[propKey];
+            }
+        })
+    };
+
+
+    const arr = fn([1, 2, 3]);
+
+
+
+    // arr.push(4, 5)
+
+
+
+</script>
+</html>

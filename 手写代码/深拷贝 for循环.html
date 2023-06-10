@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实现一个deepClone需要兼容set、map、symbol、object -->
+</body>
+<script>
+    const deepClone = (obj) => {
+        const result = Array.isArray(obj) ? [] : {};
+
+        for (const [key, value] of Object.entries(obj)) {
+            if (typeof value === 'object') {
+                result[key] = deepClone(value);
+            } else {
+                result[key] = value;
+            }
+        }
+
+
+        return result;
+    }
+
+    // 如下，验证过程
+    const obj = {obj: {value: 1}, symbol: Symbol(), set: new Set([1, 2, 3]), map: new Map([[1, 1], [2, 2]])}
+    const copy = deepClone(obj);
+
+    obj.obj.value = 11;
+    console.log('obj', obj)
+    console.log('copy', copy)
+
+</script>
+
+</html>

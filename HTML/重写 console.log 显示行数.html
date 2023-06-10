@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="./script/重写console.js"></script> -->
+</head>
+
+<body>
+
+</body>
+<script>
+    (function () {
+        const _console = (() => {
+            let obj = {};
+            for (let key in console) {
+                obj[key] = console[key];
+            };
+            return obj;
+        })(),
+
+            getStyle = (name, text) => {
+                let objColors = {
+                    green: [32, 39],
+                    magenta: [35, 39],
+                    gray: [90, 39]
+                },
+                    color = objColors[name];
+                return `\u001B[${color[0]}m${text}\u001B[${color[1]}m`;
+            },
+
+            getText = () => {
+                let err = new Error(),
+                    strErr = err.stack,
+                    strLineErr = strErr.split(/\r|\n/)[3],
+                    arrErrResult = strLineErr.match(/[^/|:|\\]{1,}/ig),
+                    temp = {};
+                // _console.log(strErr)
+                temp.colNum = +arrErrResult.pop();
+                temp.lineNum = +arrErrResult.pop();
+                temp.fileName = arrErrResult.slice(1).join('/');
+                return /\\|\//ig.test(strLineErr) ? `🐸 ${getStyle('magenta', temp.fileName)}${getStyle('gray', ':')}${getStyle('green', temp.lineNum)}` : undefined;
+            };
+
+        // cover console
+        for (let key in console) {
+            console[key] = function () {
+                let content = getText();
+                let isEcho = content && key !== 'time';
+                if (isEcho) {
+                    _console['log'](content);
+                };
+                _console[key](...arguments);
+                if (isEcho) {
+                    _console['log']('');
+                };
+            };
+        };
+    })()
+    // console.log_ = console.log
+    // console.log = (function(isLog) {
+    //     return function(...param) {
+    //         if (!isLog) {
+    //             return;
+    //         }
+
+    //         console.log_('log');
+    //         console.log_.call(console, ...param)
+    //     }
+    // })(true)
+
+    console.log(222);
+</script>
+
+</html>

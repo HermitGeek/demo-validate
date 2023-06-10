@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-06-05 16:24:46
+ * @LastEditTime: 2020-06-05 16:57:17
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-code/手写代码/概率抽奖 我的.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function createRandom(contents, proportion) {
+        let total = proportion.reduce((total, value) => total + value);
+
+        const handleTotal = () => {
+            const allIsInteger = proportion.every((value) => ((value * total) % 1 === 0));
+
+            if (allIsInteger) {
+                return;
+            } else {
+                total *= 10;
+                handleTotal();
+            }
+        }
+
+        handleTotal();
+
+        let list = [];
+        const randomIndex = Math.floor(Math.random() * total);
+
+        proportion.forEach((value, index) => {
+            list = list.concat((new Array(value * total)).fill(contents[index]));
+        })
+
+        return list[randomIndex];
+    };
+
+    // createRandom([0.1, 0.88])
+
+
+    // test
+    var contents = ['iiei', 'llll'];
+    var proportion = [0.1, 0.9];
+
+    createRandom(contents, proportion)
+</script>
+
+</html>

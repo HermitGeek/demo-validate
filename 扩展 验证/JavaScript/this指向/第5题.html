@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>3</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function fn() {
+        console.log(this);
+    }
+
+    var obj = {};
+
+    // 方法1：
+    obj.fn = fn;
+    obj.fn();
+
+    // 方法2：
+    fn.apply(obj);
+
+    // 方法3：
+    fn.call(obj);
+
+    // 方法4：
+    fn.bind(obj)();
+</script>
+
+</html>

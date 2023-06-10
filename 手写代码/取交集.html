@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const fn = (...params) => {
+        const starts = [];
+        const ends = [];
+
+
+        params.forEach((item) => {
+            starts.push(Math.min.apply(null, item))
+            ends.push(Math.max.apply(null, item))
+        });
+
+
+        const start = Math.max.apply(null, starts);
+        const end = Math.min.apply(null, ends);
+
+        return start > end ? null : [start, end];
+    }
+
+    const re = fn([1, 9], [6, 2], [7, 8]);
+
+    console.log(re)
+</script>
+</html>

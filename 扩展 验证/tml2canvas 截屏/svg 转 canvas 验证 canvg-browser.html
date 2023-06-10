@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script> -->
+    <script src="./assets/canvg-browser/index.js"></script>
+    <script src="./assets/html2canvas.js"></script>
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        #capture {
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-container {
+            border: 1px solid red;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" style="min-width:400px;height:300px">
+        <svg>
+            <line x1="0" y1="10" x2="0" y2="100" style="stroke:#006600;" />
+            <line x1="10" y1="10" x2="100" y2="100" style="stroke:#006600;" />
+            <line x1="20" y1="10" x2="100" y2="50" style="stroke:#006600;" />
+            <line x1="30" y1="10" x2="110" y2="10" style="stroke:#006600;" />
+        </svg>
+
+        <img src="http://api1.map.bdimg.com/customimage/tile?&x=11316&y=3478&z=16&udt=20180321&scale=1&ak=OnLHNAr2IUm1jdGnuBYfEhvK&styles=t%3Awater%7Ce%3Aall%7Cc%3A%23021019%2Ct%3Ahighway%7Ce%3Ag%7Cc%3A%23000000%2Ct%3Aarterial%7Ce%3Ag%7Cc%3A%23000000%2Ct%3Alocal%7Ce%3Ag%7Cc%3A%23000000%2Ct%3Aland%7Ce%3Ag%7Cc%3A%23414866%2Ct%3Arailway%7Ce%3Ag.f%7Cc%3A%23000000%2Ct%3Asubway%7Ce%3Ag%7Cc%3A%23000000%7Cl%3A-70%2Ct%3Abuilding%7Ce%3Ag.f%7Cc%3A%23000000%2Ct%3Aall%7Ce%3Al.t.f%7Cv%3Aon%7Cc%3A%23a1a1a1%2Ct%3Abuilding%7Ce%3Ag%7Cv%3Aoff%7Cc%3A%23303456%2Ct%3Agreen%7Ce%3Ag%7Cc%3A%23303456%2Ct%3Aboundary%7Ce%3Aall%7Cc%3A%231e1c1c%2Ct%3Amanmade%7Ce%3Aall%7Cv%3Aoff%7Cc%3A%23303456%2Ct%3Aall%7Ce%3Al.t.s%7Cv%3Aon%7Cc%3A%23444444%2Ct%3Apoi%7Ce%3Aall%7Cv%3Aoff%2Ct%3Ahighway%7Ce%3Ag.s%7Cc%3A%232c88de%2Ct%3Aarterial%7Ce%3Ag.s%7Cc%3A%2313487a"
+             id="baiduImage">
+    </div>
+
+    <button id="btn1"> 转换 </button>
+    <button id="btn2"> 截屏 </button>
+
+    <div class="image-container">
+        <img src="" alt="" id="img">
+    </div>
+</body>
+<script>
+    function nodeToString(node) {
+        var tmpNode = document.createElement("div");
+        tmpNode.appendChild(node.cloneNode(true));
+        var str = tmpNode.innerHTML;
+        tmpNode = node = null;
+        return str;
+    }
+
+    function showQRCode() {
+        var svgElements = document.querySelectorAll('svg');
+
+
+        svgElements.forEach((node) => {
+            var parentNode = node.parentNode;
+            const strNode = nodeToString(node);
+            const canvas = document.createElement('canvas');
+            canvas.id = 'canvas';
+            parentNode.appendChild(canvas);
+
+            canvg('canvas', strNode);
+
+            parentNode.removeChild(node);
+        });
+
+        
+    }
+
+    function imgToCanvas() {
+        const imgElements = document.querySelectorAll('#container > img');
+
+        imgElements.forEach((node) => {
+
+        });
+    }
+
+    // svg 转成 canvas
+    showQRCode();
+    imgToCanvas();
+
+
+
+    document.getElementById("btn2").addEventListener('click', () => {
+        html2canvas(document.getElementById("container"), {
+            useCROS: true
+        }).then(canvas => {
+            console.log(canvas.toDataURL());
+
+            document.getElementById("img").src = canvas.toDataURL("image/png");
+        });
+    });
+</script>
+
+</html>

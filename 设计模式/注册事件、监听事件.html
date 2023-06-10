@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class EventCustom {
+        constructor() {
+            this.eventList = {};
+        }
+
+        on(type, fn) {
+            if (!this.eventList[type]) {
+                this.eventList[type] = [];
+            }   
+
+            this.eventList[type].push(fn);
+        }
+
+        dispatch(type) {
+            if (this.eventList[type]) {
+                this.eventList[type].forEach((fn) => fn());
+            }
+        }
+
+        remove(type, fn) {
+            if (this.eventList[type]) {
+                const index = this.eventList[type].indexOf(fn);
+
+                if (index > -1) {
+                    this.eventList[type].splice(index, 1);
+                }
+            }
+        }
+    }
+
+    const event = new EventCustom();
+    const fn2 = () => {
+        console.log('click2')
+    };
+
+    event.on('click', () => {
+        console.log('click1')
+    });
+
+    event.on('click', fn2);
+
+    event.remove('click', fn2);
+
+    event.dispatch('click');
+</script>
+</html>

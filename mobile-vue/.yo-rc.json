@@ -1,0 +1,11 @@
+{
+  "generator-fe": {
+    "generator-name": "generator-fe",
+    "generator-version": "2.0.0",
+    "appName": "mobile-vue",
+    "mainModuleName": "main",
+    "version": "1.0.0",
+    "description": "Weiresearch font-end application",
+    "platform": "mobile"
+  }
+}

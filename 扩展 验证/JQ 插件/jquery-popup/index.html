@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 先引入 jquery 再引入 jquery-popup.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./index.js"></script>
+
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <button id="btn1"> 按钮1 </button>
+    <button id="btn2"> 按钮2 </button>    
+</body>
+<script>
+    $('#btn1').click(() => {
+        // 使用 默认配置项
+        $.popup();
+    });
+
+    $('#btn2').click(() => {
+        /**
+         * 使用 可选配置项：
+         *      title 标题
+         *      okButton：确认按钮文字
+         *      cancelButton：取消按钮文字
+         *      okCallback：点击确认按钮后的回调函数
+         *      cancelCallback：点击确认按钮后的回调函数
+         * */ 
+        $.popup({
+            title: '杨涛',
+            okButton: 'OK',
+            cancelButton: 'CANCEL',
+            okCallback: function() {
+                console.log('ok');
+            },
+            cancelCallback: function() {
+                console.log('cancel');
+            }
+        });
+    });
+</script>
+
+</html>

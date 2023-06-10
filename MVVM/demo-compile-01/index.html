@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./src/vue.js"></script>
+    <script src="./src/compile.js"></script>
+</head>
+<body>
+    <div id="mount">
+        <h1>{{ msg }}</h1>
+        <h2>大家好，{{ msg }}</h2>
+        <h3>name：{{ object.name }}</h3>
+        <p v-text="msg"></p>
+        <div v-html="text"></div>
+
+        <button @click="handleClick">按钮</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#mount',
+        data: {
+            msg: '消息',
+            text: '<h3>texttxtxtx</h3>',
+            object: {
+                name: 'zhangxin'
+            }
+        },
+        methods: {
+            handleClick() {
+                console.log('handleClick', this)
+            }
+        }
+    })
+
+
+</script>
+</html>

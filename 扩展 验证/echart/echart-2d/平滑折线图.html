@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>折线图</title>
+    <style media="screen">
+        body,
+        html {
+            background: #ccc;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 260px;height:140px; border: 1px solid red"></div>
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: { // 图表位置
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 33
+        },
+        calculable: true,
+        xAxis: {
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            },
+            type: 'value'
+        },
+        series: {
+            name: '邮件营销',
+            type: 'line',
+            smooth: true,
+            stack: '总量',
+            areaStyle: {
+                normal: {
+                    color: 'rgba(45, 220, 128, 0.5)'
+                }
+            },
+            lineStyle: {
+                normal: {
+                    color: 'rgb(45, 220, 128)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: 'rgb(45, 220, 128)'
+                }
+            },
+            data: [120, 132, 101, 134, 20, 230, 210]
+        }
+    };
+
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart1.setOption(option);
+</script>
+
+</html>

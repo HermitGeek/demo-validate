@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="button"></button>
+</body>
+<script>
+    const button = document.getElementById('button');
+    const arr = [];
+
+    const newArray = new Proxy(arr, {
+        get: function (target, key, receiver) {
+            console.log(key);
+            return Reflect.get(target, key, receiver);
+        },
+
+        set(target, key, value) {
+            console.log(target, key, value)
+
+            return Reflect.set(target, key, value);
+        }
+    });
+
+    console.log(newArray)
+
+
+    button.addEventListener('click', (e) => {
+        newArray.arr.push(1);
+
+        current = arr;
+    })
+</script>
+
+</html>

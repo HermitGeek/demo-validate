@@ -1,0 +1,146 @@
+网址1：https://ecomfe.github.io/echarts-examples/public/editor.html?c=sankey-product
+
+实例代码1：
+myChart.showLoading();
+$.get('data/asset/data/product.json', function (data) {
+    myChart.hideLoading();
+
+    myChart.setOption(option = {
+        title: {
+            text: 'Sankey Diagram'
+        },
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+
+        },
+        series: [{
+            type: 'sankey',
+            layout: 'none',
+            data: data.nodes,
+            links: data.links,
+            label: {        // 文字
+                normal: {
+                    color: 'blue'
+                }
+            },
+            itemStyle: {    // 柱状体
+                normal: {
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    color: {
+                        type: 'linear',
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0,
+                            color: 'red' // 0% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: 'blue' // 100% 处的颜色
+                        }],
+                        globalCoord: false // 缺省为 false
+                    }
+                }
+            },
+            lineStyle: {    // 背景
+                normal: {
+                    curveness: 0.5,
+                    opacity: 1,     // 透明度
+                    color: 'yellow'
+                }
+            }
+        }]
+    });
+});
+
+
+网址2：https://ecomfe.github.io/echarts-examples/public/editor.html?c=graph-circular-layout&theme=light
+
+示例代码2：
+myChart.showLoading();
+$.get('data/asset/data/les-miserables.gexf', function (xml) {
+    myChart.hideLoading();
+
+    var graph = echarts.dataTool.gexf.parse(xml);
+    var categories = [];
+    for (var i = 0; i < 9; i++) {
+        categories[i] = {
+            name: '类目' + i
+        };
+    }
+    graph.nodes.forEach(function (node) {
+        node.itemStyle = null;
+        node.value = node.symbolSize;
+        node.symbolSize /= 1.5;
+        node.label = {
+            normal: {
+                show: node.symbolSize > 10
+            }
+        };
+        node.category = node.attributes.modularity_class;
+    });
+    option = {
+        title: {
+            text: 'Les Miserables',
+            subtext: 'Circular layout',
+            top: 'bottom',
+            left: 'right'
+        },
+        tooltip: {},
+        legend: [{
+            // selectedMode: 'single',
+            data: categories.map(function (a) {
+                return a.name;
+            })
+        }],
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series: [{
+            name: 'Les Miserables',
+            type: 'graph',
+            layout: 'circular',
+            circular: {
+                rotateLabel: true
+            },
+            data: graph.nodes,
+            links: graph.links,
+            categories: categories,
+            roam: true,
+            label: {        // 文字
+                normal: {
+                    color: 'green'
+                }
+            },
+            itemStyle: {    // 图形
+                normal: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0,
+                            color: 'red' // 0% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: 'blue' // 100% 处的颜色
+                        }],
+                        globalCoord: false // 缺省为 false
+                    },
+                    opacity: 0.5    // 透明度
+                }
+            },
+            lineStyle: {    // 背景
+                normal: {
+                    color: 'source',
+                    curveness: 0.3
+                }
+            }
+        }]
+    };
+
+    myChart.setOption(option);
+}, 'xml');

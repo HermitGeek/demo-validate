@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var obj = {
+            fn: function () {
+                console.log(this);
+            }
+        };
+
+        // 方法1：
+        setTimeout(obj.fn.bind(obj), 1000);
+        setTimeout(obj.fn.apply(obj), 1000);
+        setTimeout(obj.fn.call(obj), 1000);
+
+        // 方法2：
+        setTimeout(function () {
+            obj.fn();
+        }, 1000);
+    </script>
+</html>

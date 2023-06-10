@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>细胞分裂</title>
+</head>
+
+<body>
+
+</body>
+<!-- 1个细胞，一个小时分裂一次，生命周期是3小时，求n小时后容器内，有多少细胞 -->
+<script>
+    function grow(n) {
+        if (n <= 3) {
+            return 1;
+        }
+    }
+
+    // function dead(n) {
+    //     if (n <= 2) {
+    //         return 0;
+    //     }
+    //
+    //     if (n === 3 || n === 4) {
+    //         return 1;
+    //     }
+    // }
+</script>
+
+<script>
+    // var afib = function(n) {
+    //     if (n === 0) {
+    //         return 1;
+    //     } //初始的那个细胞
+    //     return afib(n - 1) + bfib(n - 1) + cfib(n - 1);
+    // }
+    // var bfib = function(n) {
+    //     if (n === 0) {
+    //         return 0;
+    //     } //一个小时之后才会生成
+    //     return afib(n - 1);
+    // }
+    // var cfib = function(n) {
+    //     if (n === 0 || n === 1) {
+    //         return 0;
+    //     } //前两小时还没生成
+    //     return bfib(n - 1);
+    // }
+    //
+    // var time = 3;
+    // console.log(afib(time) + bfib(time) + cfib(time));
+</script>
+<script>
+    function fn1(m, n) {
+        if (n === 0) {
+            return 1;
+        }
+
+        return fn1(m, n -1) * m;
+    }
+
+    console.log(fn1(3,4));
+</script>
+
+
+</html>

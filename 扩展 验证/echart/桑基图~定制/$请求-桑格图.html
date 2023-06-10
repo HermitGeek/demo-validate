@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+
+    <div id="main" style="width: 960px;height:600px;"></div>
+
+</body>
+<script src="./assets/echarts.min.js"></script>
+
+<script>
+    // 基于准备好的dom，初始化echarts实例
+
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.showLoading();
+    $.get('data/asset/data/product.json', function (data) {
+        myChart.hideLoading();
+
+        myChart.setOption(option = {
+            title: {
+                text: 'Sankey Diagram'
+            },
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+
+            },
+            series: [{
+                type: 'sankey',
+                layout: 'none',
+                data: data.nodes,
+                links: data.links,
+                label: { // 文字
+                    color: 'red',
+                },
+                itemStyle: { // 柱状体
+                    normal: {
+                        borderWidth: 1,
+                        borderColor: 'transparent',
+                    }
+                },
+                lineStyle: { // 背景
+                    normal: {
+                        curveness: 0.5,
+                        opacity: 1, // 透明度
+                        color: 'yellow'
+                    }
+                }
+            }]
+        });
+    });
+</script>
+
+</html>

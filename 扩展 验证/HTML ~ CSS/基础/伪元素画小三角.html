@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>伪元素画小三角</title>
+    </head>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            position: relative;
+        }
+
+        .box::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-left: 6px solid red;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+        }
+
+        .box::before {
+            content: '这是一个伪元素';
+            display: block;
+            width: 100px;
+            height: 100px;
+            color: red;
+            border: 6px solid transparent;
+            border-left: 6px solid red;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+        }
+    </style>
+    <body>
+        <div class="box">
+
+        </div>
+
+    </body>
+</html>

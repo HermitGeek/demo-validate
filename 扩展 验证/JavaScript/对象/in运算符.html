@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>33</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var Fn = function () {
+            this.name = 'zhang';
+        }
+
+        Fn.prototype.age = 19;
+
+        var obj = new Fn();
+
+        console.log('name' in obj);     // true
+        console.log('age' in obj);      // true
+    </script>
+</html>

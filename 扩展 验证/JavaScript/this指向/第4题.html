@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        var obj ={
+            say: function () {
+                console.log(this);
+            }
+        };
+
+        obj.say();
+        (obj.say)();
+        (obj.say = obj.say)();
+        (false || obj.say)();
+    </script>
+</html>

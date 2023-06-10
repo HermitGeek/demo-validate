@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    选择一个基准项 target，通常是第一个数
+    比他小的放一侧，比他大的放另一侧
+    再 分别对 target 左右进行递归排序
+
+    注意 
+        循环时，略过第一项
+        递归临界条件，每一项之间的关系
+    */
+    const array = [1, 3, 8, 2, 4, 5, 2];
+
+    const sort = (arr) => {
+        if (arr.length < 2) {
+            return arr;
+        }
+
+        const left = [];
+        const right = [];
+        const target = arr[0];
+
+        arr.forEach((item, index) => {
+            if (index > 0) {
+                if (item > target) {
+                    right.push(item)
+                } else {
+                    left.push(item)
+                }
+            }
+
+        });
+
+        return sort(left).concat(target, sort(right));
+    };
+
+    console.log(sort(array))
+</script>
+
+</html>

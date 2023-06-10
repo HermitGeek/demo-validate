@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    const a = {
+        name: 'zhang',
+        info: {
+            age: 18
+        }
+    };
+
+    const aClone = $.extend(true, {}, a);
+
+    a.name = 'xin';
+    a.info.age = 20;
+    console.log(aClone); // aClone.name 值为 'zhang'；aClone.info.age 值为20
+</script>
+
+</html>

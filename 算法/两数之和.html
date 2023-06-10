@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 时间复杂度 O(N^2)
+    // var twoSum = function (nums, target) {
+    //     for (var i = 0; i < nums.length; i++) {
+    //         var dif = target - nums[i];
+    //         // j = i + 1 的目的是减少重复计算和避免两个元素下标相同
+    //         for (var j = i + 1; j < nums.length; j++) {
+    //             if (nums[j] == dif)
+    //                 return [i, j];
+    //         }
+    //     }
+    // };
+
+    // 时间复杂度 O(N)
+    var twoSum = function (nums, target) {
+        var temp = [];
+        for (var i = 0; i < nums.length; i++) {
+            var dif = target - nums[i];
+
+            if (temp[dif] != undefined) {
+                return [temp[dif], i];
+            }
+
+            temp[nums[i]] = i;
+        }
+    };
+
+
+    console.log(twoSum([8, 10, 2, 7], 9));
+</script>
+
+</html>

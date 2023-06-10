@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function getAsyncLoadImages(source) {
+        const imgs = [];
+
+        source.forEach(function (url, i) {
+            imgs[i] = new Image();
+            imgs[i].onload = function () {
+                // console.log(imgs[i]);
+            }
+
+            imgs[i].onerror = function () {
+                reject(new Error('Could not load image at ' + url));
+            };
+
+            imgs[i].src = url;
+        })
+
+        return imgs;
+    }
+
+    const result = getAsyncLoadImages(['1.png', '2.png']);
+    console.log(result);
+</script>
+
+</html>

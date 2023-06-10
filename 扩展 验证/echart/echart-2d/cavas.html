@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,
+    html {
+      background: transparent;
+      margin: 0;
+      padding: 0;
+    }
+    #main3 {
+      position: relative;
+    }
+    #main3 p {
+      color: #FFC001;
+      font-size: 40px;
+      position: absolute;
+      top: -7px;
+      left: 38px;
+    }
+    #main3 span {
+      color: #fff;
+      font-size: 13px;
+      position: absolute;
+      top: 80px;
+      left: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main3" style="width: 116px;height:116px;">
+    <canvas id="avgAge" width="116px" height="116px" style="border: 1px solid red;"></canvas>
+    <!-- <p>28</p>
+    <span>年龄中位数</span> -->
+  </div>
+
+
+  <script>
+    //获取Canvas对象(画布)
+    var canvas = document.getElementById("avgAge");
+    var ctx = canvas.getContext("2d");
+    ctx.lineWidth = 2;
+
+    //开始一个新的绘制路径
+    ctx.beginPath();
+    ctx.strokeStyle = "#FFC001";
+    var circle = {
+      x:58,
+      y: 58,
+      r: 56
+    };
+    ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2, false);
+    ctx.stroke();
+  </script>
+</body>
+
+</html>
+
+
+</html>

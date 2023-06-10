@@ -1,0 +1,101 @@
+html, body, ul, li, span, p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /*background-color: green;*/
+}
+
+.nav {
+    height: 80px;
+    width: 100%;
+    border: 1px solid red;
+    position: relative;
+}
+
+.nav-list {
+    display: inline-block;
+    vertical-align: middle;
+    height: 80px;
+    width: 100%;
+    position: relative;
+}
+
+.nav-list .nav-list-item {
+    float: left;
+    width: 100px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.nav-list .nav-list-item.logo {
+    width: 138px;
+}
+
+.nav-list .nav-list-item.logo a {
+    display: block;
+    width: 138px;
+    height: 78px;
+    background: url('./img/logo.png') no-repeat;
+    text-indent: -999px;
+}
+
+.nav-list-content {
+    background-color: #fff;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: 0;
+}
+
+.nav-list-content li {
+    float: left;
+    width: 160px;
+    height: 160px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.nav-list-content li p {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+/**
+ * 以下是css3动画属性
+ */
+.cellphone-container {
+    margin-top: 10px;
+    transform: translateX(50%);
+}
+
+.nav-list-item:hover + .nav-list-content{
+    height: 160px;
+    transition: all 0.1s;
+}
+
+.nav-list-item:hover + .nav-list-content .cellphone-container{
+    transform: translateX(0);
+    transition: all 0.5s;
+}
+
+.nav-list-content:hover {
+    height: 160px;
+}
+
+.nav-list-content:hover .cellphone-container{
+    transform: translateX(0);
+}

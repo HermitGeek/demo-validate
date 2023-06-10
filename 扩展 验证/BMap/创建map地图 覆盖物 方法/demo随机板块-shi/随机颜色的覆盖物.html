@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>颜色随机的覆盖物</title>
+    <style type="text/css">
+        body,
+        html,
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+
+        .anchorBL {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="allmap"></div>
+</body>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=OnLHNAr2IUm1jdGnuBYfEhvK"></script>
+<script src="./boundary.js"></script>
+<script>
+    // import boundaryData from './boundary.json';
+
+    var map = new BMap.Map("allmap"); // 创建Map实例
+    map.centerAndZoom('成都', 11); // 初始化地图,设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+
+
+    const options = function() {
+        const colors = ['#d02e2e', '#95b23e', '#3e9eb2', '#4864ae'];
+        const randomColor = colors[parseInt(Math.random() * 4)];
+
+        return {
+            fillColor: randomColor, // 填充颜色。当参数为空时，圆形将没有填充效果。
+            fillOpacity: 0.4, // 填充的透明度，取值范围0 - 1。
+            strokeColor: '#000', // 边线颜色。
+            strokeWeight: 2, // 边线的宽度，以像素为单位。
+            strokeOpacity: 0.6, // 边线透明度，取值范围0 - 1。
+            strokeStyle: 'solid' // 边线的样式，solid或dashed。
+        };
+    }
+
+
+
+    boundaryData.forEach((item) => {
+        const points = [];
+        // 绘制覆盖物
+        item.boundary.forEach((boundary) => {
+            points.push(new BMap.Point(boundary[0], boundary[1]));
+        });
+        const polygonOverlay = new BMap.Polygon(points, options());
+
+
+        map.addOverlay(polygonOverlay); // 添加覆盖物
+        drawLabel(item);
+    });
+
+    // 绘制label（自己计算中心点）
+    function drawLabel(item) {
+        const startCoordinate = item.boundary[0];
+        const cneterCoordinate = item.boundary[parseInt(item.boundary.length / 2)];
+
+        const centerLng = (startCoordinate[0] + cneterCoordinate[0]) / 2;
+        const centerLat = (startCoordinate[1] + cneterCoordinate[1]) / 2;
+
+        const point = new BMap.Point(centerLng, centerLat);
+        const labelText = `<span>${item.name}</span>`;
+        const poiLabel = new BMap.Label(labelText, {
+            // eslint-disable-next-line no-undef
+            offset: new BMap.Size(0, -10), // 偏移量
+            position: point // label 位置
+        });
+
+        poiLabel.setStyle({
+            border: 'none',
+            transform: 'translateX(-50%)',
+            backgroundColor: 'transparent',
+            fontSize: '12px',
+            color: '#fff'
+        });
+        map.addOverlay(poiLabel); // 添加poiLabel
+    };
+</script>
+
+</html>

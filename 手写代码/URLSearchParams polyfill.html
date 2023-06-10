@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //    题目要求，如下
+
+    // // 构造函数支持传入 URL 参数串 
+    // searchParams = new URLSearchParams("foo=1&bar=2") 
+
+    // // 构造函数也支持传入一个包含参数键值对的对象 
+    // searchParams = new URLSearchParams({foo: "1", bar: "2"}) 
+
+    // // 实例支持 get()、set()、has()、append() 四个方法 
+    // console.log(searchParams.get("foo")) // "1" 
+    // searchParams.set("foo", "10") 
+    // console.log(searchParams.has("bar")) // true 
+    // searchParams.append("foo", "100") 
+
+    // // 实例支持 toString() 方法 
+    // console.log(searchParams.toString()) // "foo=10&bar=2&foo=100" 
+    // // 实例支持 for-of 迭代 
+    // for(const [key, value] of searchParams) { 
+    //   console.log([key, value]) 
+    //   // ["foo", "10"] 
+    //   // ["bar", "2"] 
+    //   // ["foo", "100"] 
+    // } 
+    class URLSearchParams{
+        constructor(param) {
+            this.searchObject = {};
+
+            if (typeof param === 'object') {
+                this.searchObject = JSON.parse(JSON.stringify(param))
+            } else if (typeof param === 'string') {
+                const arr = param.split('&').map((item) => item.split('='));
+
+                for (const [key, value] of arr) {
+                    if (this.searchObject[key]) {
+                        this.searchObject[key].push(value);
+                    } else {
+                        this.searchObject[key] = [value];
+                    }
+                }
+            } else {
+                throw new Error('参数类型错误')
+            }
+
+            this.updateArr();
+        }
+
+        [Symbol.iterator]() {
+            return this;
+        }
+
+        next() {
+            var index = this.start;
+
+            if (index < this.end) {
+                this.start++;
+
+                return {
+                    done: false,
+                    value: this.arr[index]
+                };
+            }
+
+            return {
+                done: true,
+                value: undefined
+            };
+        }
+
+        get(key) {
+            return this.searchObject[key][0];
+        }
+
+        set(key, value) {
+            this.searchObject[key] = [value];
+            this.updateArr();
+        }
+
+        has(key) {
+            return Boolean(this.searchObject[key] && this.searchObject[key].length);
+        }
+
+        append(key, value) {
+            if (this.searchObject[key]) {
+                this.searchObject[key].push(value);
+            } else {
+                this.searchObject[key] = [value];
+            }
+
+            this.updateArr();
+        }
+
+        toString() {
+            let str = '';
+
+            for (const [key, item] of Object.entries(this.searchObject)) {
+                item.forEach((value) => {
+                    str = str + `${key}=${value}&`;
+                })
+            }
+
+            return str.slice(0, -1);
+        }
+
+        entries() {
+
+            return {
+                '0': 1,
+                '1': 2,
+                length: 2
+            }
+        }
+
+        updateArr() {
+            this.arr = [];
+            for (const [key, item] of Object.entries(this.searchObject)) {
+                item.forEach((value) => {
+                    this.arr.push([key, value]);
+                })
+            }
+
+            this.start = 0;
+            this.end = this.arr.length;
+
+        }
+    }
+
+    const re = new URLSearchParams1("foo=1&bar=2");
+</script>
+
+</html>

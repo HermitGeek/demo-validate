@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const str = 'jjqowacbdhajsdhkakkk';
+
+
+    const filter1 = (str) => {
+        const obj = {};
+
+        for (let i = 0; i < str.length; i++) {
+            const item = str[i];
+
+            if (!obj[item]) {
+                obj[item] = 1;
+            } else {
+                obj[item] += 1;
+            }
+        }
+
+        const maxNumber = Math.max.apply(null, Object.values(obj));
+
+        for (let key in obj) {
+            if (obj[key] === maxNumber) {
+                console.log(key)
+            }
+        }
+    }  
+
+    const filter2 = (str) => {
+        const st = str.split('').sort((a, b) => a.localeCompare(b)).join('')
+        const reg = /(\w)\1+/g;
+        const match = st.match(reg);
+
+
+        if (match) {
+            console.log(match)
+        } else {
+
+        }
+    }
+    
+    filter2(str);
+</script>
+</html>

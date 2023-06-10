@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./css-attr.js"></script>
+    <style>
+        button {
+            border: 0;
+            padding: .5em 1em;
+        }
+
+        button {
+            --attr-bg: attr(bgcolor color);
+            background-color: var(--attr-bg);
+            --attr-radius: attr(radius px, 4px);
+            border-radius: var(--attr-radius);
+        }
+    </style>
+</head>
+
+<body>
+    <button bgcolor="skyblue" radius="4">按钮</button>
+    <button bgcolor="#00000040" radius="1rem">按钮</button>
+    <button bgcolor="red" radius="50%">按钮</button>
+    <button bgcolor="orange" radius="100% / 50%">按钮</button>
+</body>
+
+</html>

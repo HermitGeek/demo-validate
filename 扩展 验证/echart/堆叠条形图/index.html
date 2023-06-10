@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../assets/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="chart" style="width: 100%; height: 100%"></div>
+</body>
+<script>
+    const myChart = echarts.init(document.getElementById('chart'));
+    const option = {
+        title: {
+            show: true,
+            text: '兴趣爱好',
+            top: 25,
+            left: 30,
+            textStyle: {
+                color: '#48575d',
+                fontSize: 16,
+                fontWeight: 'normal'
+            }
+        },
+        legend: {
+            top: 65,
+            left: 30,
+            data: ['高', '中', '低'],
+            icon: 'circle',
+            textStyle: {
+                borderRadius: 50
+            }
+        },
+        color: ['#00a3e7', '#48c5fa', '#94e0ff'],
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '4%',
+            right: '4%',
+            bottom: '35',
+            top: '120',
+            containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+            data: ['户外', '美食', '健身'],
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#778084'
+                }
+            },
+            axisTick: {
+                show: false
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#778084'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                formatter: '{value}%'
+            }
+        }],
+        series: [{
+                name: '高',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [12, 5, 22]
+            },
+            {
+                name: '中',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [11, 33, 44]
+            },
+            {
+                name: '低',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [44, 21, 33]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lodash.min.js"></script>
+</head>
+<body>
+    <input type="text" id="input">
+</body>
+<script>
+    const input = document.getElementById('input');
+    const eventCallback = _.debounce(function(e) {
+        console.log(e.target.value);
+    }, 2000, {
+        trailing: false
+    });
+
+    input.addEventListener('input',  eventCallback);
+</script>
+</html>
+
+

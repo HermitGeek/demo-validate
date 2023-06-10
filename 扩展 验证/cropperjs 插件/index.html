@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="./dist/cropper.css" rel="stylesheet">
+    <script src="./dist/cropper.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <style>
+        .img-container {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width: 400px">
+        <img id="image" src="./1.png">
+    </div>
+
+    <button id="btn">保存</button>
+
+    <img id="img" src="" alt="">
+</body>
+<script>
+    var image = document.getElementById('image'); //获取图片元素
+    var cropper = null;
+
+    //初始化控件的方法
+    function initCropper() {
+        cropper = new Cropper(image, {
+            aspectRatio: NaN, //不锁定 "剪裁框" 比例（自定义）
+            dragMode: 'crop',
+            rotatable: true, //是否允许旋转
+            minCropBoxWidth: 0,
+            minCropBoxHeight: 0,
+            minCanvasWidth: 0,
+            minCanvasHeight: 0,
+            minContainerWidth: 200,
+            minContainerHeight: 200,
+            cropBoxResizable: true //是否允许 调整 剪裁框 的大小
+        });
+    }
+
+    initCropper();
+
+    document.getElementById('btn').addEventListener('click', () => {
+
+        // 转成 base64 位
+        // document.getElementById('img').src = cropper.getCroppedCanvas().toDataURL();;
+
+        // 转成 FormData 直接发请求
+        cropper.getCroppedCanvas().toBlob((blob) => {
+            var formData = new FormData();
+
+            formData.append('croppedImage', blob);
+
+            console.log(formData);
+
+            $.ajax({
+                url: "http://test.cifi.weiresearch.com/cifi/0.1/project/ppt/img/upload",
+                type: "POST",
+                data: JSON.stringify({
+                    projectId: 20,
+                    type: 1,
+                    file: formData
+                }),
+                processData: false, // 告诉jQuery不要去处理发送的数据
+                contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+            });
+        });
+
+
+    });
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const _formatNumberToSeparator = (value) => {
+        // 分组语法 捕获
+        const re = /\d{1,3}(?=(\d{3})+$)/g;
+        // 代表 最后三个数字结尾，前面每三个数字是一组，最前面一组可以是一到三个数字
+        // 匹配项是 最后三个数字 之前的每一组数字
+
+        const result = String(value).replace(/^(\d+)((.\d+)?)$/, (match, s1, s2) => {
+            console.log(match, s1, s2)
+            return s1.replace(re, '$&,') + s2;
+        });
+
+        return result;
+    };
+
+    console.log(_formatNumberToSeparator(111222.12))
+</script>
+
+</html>

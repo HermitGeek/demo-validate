@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>异步加载</title>
+    <style type="text/css">
+        body,
+        html,
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+    <script type="text/javascript">
+        let map = null;
+
+        function initialize() {
+            map = new BMap.Map('allmap');
+            map.centerAndZoom('上海', 11);
+        }
+
+        function loadScript() {
+            var script = document.createElement("script");
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=OnLHNAr2IUm1jdGnuBYfEhvK&callback=initialize";
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+
+        setTimeout(() => {
+            const stCtrl = new BMap.PanoramaControl(); // 构造全景控件
+
+            stCtrl.setOffset(new BMap.Size(20, 20));
+            map.addControl(stCtrl); // 添加全景控件
+        }, 1000);
+    </script>
+</head>
+
+<body>
+    <div id="allmap"></div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <template id="template">
+        <style>
+            :host,
+            div {
+                color: red;
+            }
+        </style>
+        <slot></slot>
+        <div id="xixi">
+            嘻嘻
+        </div>
+        <slot name="main1"></slot>
+    </template>
+    <user-card text='{"zhangxin": "djjdjd", "c": 111}'>
+        ddkkdkdk
+        <span slot="main1">
+            插槽main1
+        </span>
+    </user-card>
+</body>
+<script>
+    class UserCard extends HTMLElement {
+        constructor() {
+            super();
+
+            console.log(JSON.parse(this.getAttribute('text')));
+
+            console.log(JSON.stringify({zhangxin: 'djjdjd', c: 111}));
+
+            const template = document.querySelector('#template');
+            this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
+        }
+    }
+
+    window.customElements.define('user-card', UserCard);
+</script>
+
+</html>

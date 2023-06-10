@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    try {
+        throw RangeError('堆栈超出');
+    } catch (error) {   
+        if (error instanceof RangeError) {
+            console.log('是 堆栈超出 类型的错误')
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>mapv-label</title>
+
+	<style type="text/css">
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+
+		.box {
+			padding: 0 -20px;
+			background: green;
+			position: absolute;
+			top: -10px;
+			left: -10px;
+		}
+	</style>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+	<script src="http://mapv.baidu.com/build/mapv.min.js"></script>
+</head>
+
+<body>
+
+	<div id="map"></div>
+	<canvas id="canvas"></canvas>
+
+</body>
+<script>
+	const mapTheme = [{
+			"featureType": "land",
+			"elementType": "all",
+			"stylers": {
+				"color": "#f2f2f2"
+			}
+		},
+		{
+			"featureType": "water",
+			"elementType": "all",
+			"stylers": {
+				"color": "#4cbce9"
+			}
+		},
+		{
+			"featureType": "road",
+			"elementType": "all",
+			"stylers": {
+				"color": "#ffffff"
+			}
+		},
+		{
+			"featureType": "manmade",
+			"elementType": "all",
+			"stylers": {
+				"color": "#f2f2f2"
+			}
+		},
+		{
+			"featureType": "green",
+			"elementType": "all",
+			"stylers": {
+				"color": "#f2f2f2"
+			}
+		},
+		{
+			"featureType": "subway",
+			"elementType": "all",
+			"stylers": {
+				"visibility": "off"
+			}
+		},
+		{
+			"featureType": "background",
+			"elementType": "labels.text.fill",
+			"stylers": {
+				"color": "#8c8c8c"
+			}
+		},
+		{
+			"featureType": "road",
+			"elementType": "labels.text.fill",
+			"stylers": {
+				"color": "#8c8c8c"
+			}
+		},
+		{
+			"featureType": "poi",
+			"elementType": "labels.text.fill",
+			"stylers": {
+				"color": "#8c8c8c"
+			}
+		}
+	];
+
+	// 百度地图API功能
+	var map = new BMap.Map("map", {
+		enableMapClick: false
+	}); // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.06152510443653, 39.673862907416876), 15); // 初始化地图,设置中心点坐标和地图级别
+	map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+
+	// 设置主题
+	map.setMapStyle({
+		styleJson: mapTheme
+	});
+
+
+	// label弹出框
+	// var windowOptions = {}
+	// // label 标注
+	// var windowContent =
+	// 	'<div class="box"><p>标题</p>' +
+	// 	'<p>1:</p>' +
+	// 	'<p>2:</p>' +
+	// 	'<p>1:</p>' +
+	// 	'<p>1:</p>' +
+	// 	'<p>1:</p>' +
+	// 	'<p>1:</p></div>';
+
+	// var infoWindow = new BMap.InfoWindow(windowContent, windowOptions); // 创建信息窗口对象
+
+	// mapv 处理数据
+	const data = [];
+	const gridList = [{
+			"grid": [
+				[116.06152510443653, 39.673862907416876],
+				[116.0615233771919, 39.6761246059897],
+				[116.05856601794541, 39.676153389210825],
+				[116.05856774663613, 39.67389169016162]
+			],
+			"value": 2
+		},
+		{
+			"grid": [
+				[116.06448405431578, 39.673828014948356],
+				[116.06448232857208, 39.67608971312688],
+				[116.0615233771919, 39.6761246059897],
+				[116.06152510443653, 39.673862907416876]
+			],
+			"value": 3
+		},
+		{
+			"grid": [
+				[116.06744424718194, 39.673787973735266],
+				[116.0674425229695, 39.67604967161389],
+				[116.06448232857208, 39.67608971312688],
+				[116.06448405431578, 39.673828014948356]
+			],
+			"value": 5
+		}
+	];
+
+	gridList.forEach((grids) => {
+		data.push({
+			geometry: {
+				type: 'Polygon',
+				coordinates: [
+					grids.grid
+				]
+			},
+			count: grids.value
+		})
+	});
+
+	// 弹出框 坐标
+	var optionsMapv = {
+		size: 40,
+		strokeStyle: 'rgba(255, 255, 255, .5)', // 描边颜色
+		lineWidth: 1,
+		gradient: {
+			0.2: 'rgba(45, 223, 130, 0.2)',
+			0.4: 'rgba(45, 223, 130, 0.4)',
+			0.6: 'rgba(45, 223, 130, 0.6)',
+			0.8: 'rgba(45, 223, 130, 0.8)',
+			1.0: 'rgba(45, 223, 130, 1)'
+		},
+		draw: 'intensity',
+		methods: {
+			click: (gridOverlay) => {
+				if (gridOverlay !== null) {
+					console.log(gridOverlay);
+					map.openInfoWindow(infoWindow, point)
+				}
+			}
+		}
+	};
+
+
+	var dataSet = new mapv.DataSet(data);
+	var mapvLayer = new mapv.baiduMapLayer(map, dataSet, optionsMapv);
+</script>
+
+</html>

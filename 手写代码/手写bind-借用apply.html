@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    Function.prototype.bind2 = function (context, ...arr1) {
+        var _this = this;
+
+        return function(...arr2) {
+            _this.apply(context, arr1.concat(arr2))
+        }
+    }
+
+    // 如下 验证代码
+    function add(a, b, c) {
+        const result = a + b + c;
+
+        console.log(result);
+        return result;
+    }
+
+    add.bind(null, 1)(2, 3, 4);     // 6
+    add.bind2(null, 1)(2, 3, 4);    // 6
+</script>
+
+</html>
+

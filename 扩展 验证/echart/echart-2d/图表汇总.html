@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,html  {
+      background: #ccc;
+      margin:0;
+      padding:0;
+    }
+    .block-panel-custom-body-chart {
+      width: 670px;
+      height: 386px;
+    }
+    #main1,#main2,#main4,#main5 {
+      float: left;
+    }
+
+    #main3 {
+      float: left;
+      position: relative;
+    }
+    #main3 p {
+      color: #FFC001;
+      font-size: 40px;
+      position: absolute;
+      top: -7px;
+      left: 38px;
+    }
+    #main3 span {
+      color: #fff;
+      font-size: 13px;
+      position: absolute;
+      top: 80px;
+      left: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="block-panel-custom-body-chart">
+    <div id="main1" style="width: 247px;height:156px;"></div>
+    <div id="main2" style="width: 243px;height:156px;"></div>
+    <div id="main3" style="width: 148px;height:156px;">
+      <canvas id="avgAge" width="148px" height="156px" style="border: 1px solid red;"></canvas>
+      <p>28</p>
+      <span>年龄中位数</span>
+    </div>
+    <div id="main4" style="width: 247px;height:180px;"></div>
+    <div id="main5" style="width: 324px;height:156px;"></div>
+  </div>
+
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart1 = echarts.init(document.getElementById('main1'));
+  var myChart2 = echarts.init(document.getElementById('main2'));
+  var myChart4 = echarts.init(document.getElementById('main4'));
+  var myChart5 = echarts.init(document.getElementById('main5'));
+
+  // 指定图表的配置项和数据
+  var option1 = {
+    title: {
+      text: '客群性别比例',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',  // 图例组件朝向
+        selectedMode: false,
+        left: 20,
+        top: 24,
+        itemWidth: 16,
+        itemHeight: 12,
+        itemGap: 10,  // 图例每项之间的间隔
+        data: ['男','女']
+    },
+    color: ['#19E17E','#E42924'],
+    series: [
+        {
+            name:'客群占比',
+            type:'pie',
+            radius: ['50%', '72%'],   // 内径 外径
+            center: [160,90],         // 图表位置
+            label: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            lableLine: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            data:[
+                {value:51.84, name:'男'},
+                {value:48.16, name:'女'}
+            ]
+        }
+    ]
+  };
+  var option2 = {
+    title: {
+      text: '年龄分布',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',  // 图例组件朝向
+        selectedMode: false,
+        left: 20,
+        top: 24,
+        itemWidth: 16,
+        itemHeight: 12,
+        itemGap: 10,  // 图例每项之间的间隔
+        data: ['00后','90后','80后','70后','其他']
+    },
+    color: ['#21AAE1','#19E17E','#FEC300','#E62F29','#C71CE6'],
+    calculable : true,
+    series : [
+        {
+            name:'年龄分布',
+            type:'pie',
+            radius : ['30%' ,'72%'],
+            center : [160, 90],
+            roseType : 'radius',
+            label: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            lableLine: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            data:[
+              {value:500, name:'00后'},
+              {value:400, name:'90后'},
+              {value:300, name:'80后'},
+              {value:200, name:'70后'},
+              {value:100, name:'其他'}
+            ]
+        }
+    ]
+  };
+  var option4 = {
+    title: {
+      text: '年龄分布',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    // tooltip: {
+    //   position: function(pos, params, dom, rect, size) {
+    //     // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+    //     var obj = {
+    //       top: 60
+    //     };
+    //     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+    //     return obj;
+    //   }
+    // },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    radar: {
+      indicator: [
+        {name: '收入能力',max: 80000},
+        {name: '娱乐休闲',max: 80000},
+        {name: '消费能力',max: 80000},
+        {name: '购车能力',max: 80000},
+        {name: '购房能力',max: 80000},
+        {name: '置业意向',max: 80000}
+      ]
+    },
+    series: [{
+      name: '客群能力指数',
+      type: 'radar',
+      data: [{
+        name: '客群能力指数',
+        value: [78680, 68800, 64000, 32540, 30370, 24120]
+
+      }]
+    }]
+  };
+  var option5 = {
+    title: {
+      text: '消费地点偏好',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    color: ['#21AAE1'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'  // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {   // 图表位置
+        left: 24,
+        right: 40,
+        top: 20,
+        bottom: 20
+    },
+    xAxis : {
+      // show: false,
+      type : 'category',
+      data : ["大古里", "蓝港", "国贸", "望京", "金台路"],
+      axisTick: {
+          show: false,
+          alignWithLabel: true,  // 标签与刻度线位置
+          length: 2
+      },
+      axisLabel: {  // 刻度标签设置
+        textStyle: {
+          color: '#fff',
+          fontSize: 13
+        }
+      }
+    },
+    yAxis : {
+      show: false,
+      type : 'value'
+    },
+    series : [
+        {
+            name:'消费人数',
+            type:'bar',
+            barWidth: '40%',
+            data:[
+              {"name": "太古里","value": 100},
+              {"name": "蓝港","value": 155},
+              {"name": "国贸","value": 233},
+              {"name": "望京","value": 199},
+              {"name": "金台路","value": 145}
+            ]
+        }
+    ]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart1.setOption(option1);
+  myChart2.setOption(option2);
+  myChart4.setOption(option4);
+  myChart5.setOption(option5);
+</script>
+<script>
+  //获取Canvas对象(画布)
+  var canvas = document.getElementById("avgAge");
+  var ctx = canvas.getContext("2d");
+  ctx.lineWidth = 2;
+
+  //开始一个新的绘制路径
+  ctx.beginPath();
+  ctx.strokeStyle = "#FFC001";
+  var circle = {
+    x:60,
+    y: 60,
+    r: 60
+  };
+  ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2, false);
+  ctx.stroke();
+</script>
+</html>

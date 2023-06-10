@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>函数</title>
+</head>
+
+<body>
+
+</body>
+<!-- <script>
+    var fn = function () {
+
+    }
+
+    console.log(fn); //输出整个函数体， 即：function fn() {}
+</script> -->
+<script>
+    var fn = new Function('a', 'b', 'c', 'return a+b+c');
+
+    console.log(fn(1, 2, 3));
+</script>
+<script>
+    var str = '{name: "zhangxin", age: 18}';
+    var aa = new Function('return' +  str);
+
+    console.log(aa());
+</script>
+
+</html>

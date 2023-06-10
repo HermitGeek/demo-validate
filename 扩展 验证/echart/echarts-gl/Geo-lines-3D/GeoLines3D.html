@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+
+  </style>
+</head>
+
+<body>
+  <div id="main" style="width:500px;height:500px;"></div>
+</body>
+<script src="../assests/echarts.js"></script>
+<script src="../assests/echarts-gl.js"></script>
+<script src="../assests/world.json"></script>
+
+<script>
+  var chart = echarts.init(document.getElementById('main'));
+  chart.setOption({
+    geo3D: {
+      map: 'world',
+      lambertMaterial: {   // 材质相关配置
+        detailTexture: '../assests/data-1491896059428-B1QbPbq6e.jpg',
+        textureTiling: 10
+      },
+
+      // postEffect: {  // 后处理特效的相关配置
+      //   enable: true,
+      //   SSAO: {
+      //     enable: true,
+      //     radius: 1
+      //   }
+      // },
+      groundPlane: {  // 地面
+        show: true
+      },
+      light: {  // 光照相关的设置
+        main: {
+          intensity: 1,
+          shadow: true
+        }
+      },
+      viewControl: {  // 用于鼠标的旋转，缩放等视角控制
+        distance: 50
+      },
+
+      itemStyle: {  // 三维地理坐标系组件 中三维图形的视觉属性，包括颜色，透明度，描边等
+        borderColor: '#000',
+        borderWidth: 0.5
+      },
+
+      regionHeight: 1.0   //三维地图每个区域的高度
+    }
+  });
+</script>
+
+</html>

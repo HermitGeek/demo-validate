@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <ul>
+        <li data-keyword="1111">1111</li>
+        <li data-keyword="2222">2222</li>
+        <li data-keyword="3333">3333</li>
+        <li data-keyword="4444">4444</li>
+    </ul>
+</body>
+<script>
+    const styleDom = document.createElement('style');
+    const inputDom = document.querySelector('#input');
+
+    inputDom.addEventListener('input', (e) => {
+        const regxp = e.target.value ? `*="${e.target.value}"` : '';
+        const emptyDisplay = e.target.value ? 'none' : 'block';
+
+        styleDom.innerHTML = `li:not([data-keyword${regxp}]) {
+            display: none;
+        }`
+    })
+
+    document.head.appendChild(styleDom)
+</script>
+</html>

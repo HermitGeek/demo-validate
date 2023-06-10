@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+    
+</body>
+<script>
+    var leftPos = (typeof window.screenLeft === 'number') ? window.screenLeft : window.screenX;
+    var topPos = (typeof window.screenTop === 'number') ? window.screenTop : window.screenY;
+
+
+    console.log(leftPos);
+    console.log(topPos);
+</script>
+</html>

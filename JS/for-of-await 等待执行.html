@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const arr = [1, 2, 3];
+    const request = (done, i) => new Promise((reslove) => {
+        setTimeout(() => {
+            reslove({done, value: i})
+        }, 1000);
+    })
+
+    arr[Symbol.asyncIterator] = function () {
+        return {
+            index: 0,
+            length: 3,
+
+            next() {
+                if (this.index < this.length) {
+                    this.index += 1;
+                    return request(false, this.index)
+                } else {
+                    return request(true)
+                }
+            }
+        }
+    }
+    const action = async () => {
+        for await (item of arr) {
+            console.log(item);
+        }
+    }
+
+    action()
+</script>
+
+</html>

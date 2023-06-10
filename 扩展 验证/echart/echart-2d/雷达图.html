@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,html  {
+      background: rgba(0,0,0,0.6);
+      margin:0;
+      padding:0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="main4" style="width: 247px;height:180px;"></div>
+
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart4 = echarts.init(document.getElementById('main4'));
+
+  // 指定图表的配置项和数据
+  var option4 = {
+    title: {
+      text: '年龄分布',
+      textStyle: {
+        color: '#fff',
+        fontSize: 14
+      },
+      padding: [0,0,0,24]
+    },
+    tooltip: {
+        trigger: 'item',
+        // formatter: "{a} <br/>{b}: {c} ({d}%)",
+        position: function(pos, params, dom, rect, size) {
+          // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+          var obj = {
+            top: 60
+          };
+          obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+          return obj;
+        }
+    },
+    radar: {
+      center : [160, 100], // 中心坐标
+      radius: 60,
+      name: {
+        textStyle: {
+          color: '#ccc'
+        }
+      },
+      nameGap: 5, // 指示器名称与指示器轴间的距离
+      axisLine: {   // 轴线配置
+        lineStyle: {
+          color: '#000'
+        }
+      },
+      axisLabel: {   // 坐标轴刻度标签的相关设置
+        // show: false,
+        // margin: 20
+      },
+      splitLine: {  // 坐标轴在 grid 区域中的分隔线的配置。
+        lineStyle: {
+          color: 'transparent'
+        }
+      },
+      splitArea: {
+        show: true,
+        areaStyle: {
+          color:  ['rgba(250,250,250,0.3)','rgba(200,200,200,0.3)']
+        }
+      },
+      indicator: [
+        {name: '收入能力',max: 80000},
+        {name: '娱乐休闲',max: 80000},
+        {name: '消费能力',max: 80000},
+        {name: '购车能力',max: 80000},
+        {name: '购房能力',max: 80000},
+        {name: '置业意向',max: 80000}
+      ]
+    },
+    series: [{
+      type: 'radar',
+      label: {  // 图形上的文本标签
+        normal: {
+          // show: true
+        }
+      },
+      lineStyle: {  // 线条样式
+        normal: {
+          color: '#9B4BAE'
+        }
+      },
+      areaStyle: { // 填充区域样式
+        normal: {
+          color: '#9B4BAE'
+        }
+      },
+      data: [{
+        name: '客群能力指数',
+        value: [78680, 68800, 64000, 32540, 30370, 24120]
+      }]
+    }]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart4.setOption(option4);
+</script>
+
+</html>

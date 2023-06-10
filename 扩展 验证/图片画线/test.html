@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .img-container {
+            width: 300px;
+            height: 300px;
+
+            position: relative;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="start">开始标注</button>
+    <button id="end">路径输出</button>
+
+    <div class="img-container">
+        <img src="./car.png" alt="" width="300" height="300">
+        <canvas id="canvas" width="300" height="300"></canvas>
+    </div>
+</body>
+<script>
+    const startBtn = document.getElementById("start");
+    const endBtn = document.getElementById("end");
+    
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.lineWidth = "2";
+    ctx.strokeStyle = "red";
+
+    const path = [];
+    const drawPath = (e) => {
+        var _e = window.event || e;
+        ctx.lineTo(_e.offsetX, _e.offsetY);
+        ctx.stroke();
+        path.push([_e.offsetX, _e.offsetY])
+    };
+
+    startBtn.addEventListener('click', () => {
+        canvas.addEventListener('click', drawPath);
+    });
+
+    endBtn.addEventListener('click', () => {
+        canvas.removeEventListener('click', drawPath);
+        ctx.beginPath();//只清除路径,不清除状态
+        
+        console.log(path);
+
+        path.length = 0;
+    });
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>22</title>
+        <script src="./ke.js"></script>
+        <script src="./da.js"></script>
+    </head>
+    <body>
+
+    </body>
+    <script>
+
+        let keData = [];
+        ke.data.gridList[0].forEach((value) => {
+            if (value.index <= 12810) {
+                keData.push(value);
+            }
+        });
+
+        let daData = [];
+        da.data.gridList[0].forEach((value) => {
+            if (value.index <= 5471) {
+                daData.push(value);
+            }
+        });
+
+        console.log(keData);
+        console.log(daData);
+    </script>
+</html>

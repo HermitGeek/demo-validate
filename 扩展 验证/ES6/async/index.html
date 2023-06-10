@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+const getData1 = () => {
+    // 异步
+}
+
+const getData2 = () => {
+    // 异步
+}
+
+const getData = async () => {
+    const result = await Promise.all([getData1(), getData2()])
+
+    console.log(result);    // result 为 getData1、getData2 返回值构成的数组
+}
+</script>
+
+</html>

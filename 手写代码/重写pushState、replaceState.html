@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function _wr(type) {
+        const origin = history[type];
+
+        return function() {
+            const result = origin.apply(this, arguments);
+            const e = new Event(type);
+
+            window.dispatchEvent(e);
+            return result;
+        }
+    }
+
+    history.pushState = _wr('pushState');
+    history.replaceState = _wr('replaceState');
+
+
+    window.addEventListener('pushState', () => {
+        console.log('pushState')
+    });
+
+    setTimeout(() => {
+        history.pushState({}, '嘻嘻哈哈', 'ajax.html')
+    }, 4000);
+
+    
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+
+  </style>
+</head>
+
+<body>
+  <div id="main"></div>
+</body>
+<script src="./echarts.min.js"></script>
+<script src="./echarts-x.js"></script>
+<script>
+  var myChart = ec.init(document.getElementById('main'));
+  var chart = echarts.init(document.getElementById('main'));
+
+  chart.setOption({
+    title: {
+      text: 'A Simple Example'
+    },
+    series: [{
+      type: 'map3d',
+      // Empty data
+      data: [{}]
+    }]
+  })
+</script>
+
+</html>

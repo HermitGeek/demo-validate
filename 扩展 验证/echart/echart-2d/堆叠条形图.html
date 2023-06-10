@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style media="screen">
+    body,html  {
+      background: #ccc;
+      margin:0;
+      padding:0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="main2" style="width: 230px;height:190px;"></div>
+
+</body>
+<script src="./echarts.min.js"></script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var myChart2 = echarts.init(document.getElementById('main2'));
+
+  var option2 = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        top: 12,
+        left: 96,
+        itemWidth: 16,
+        itemHeight: 12,
+        itemGap: 10,
+        data: ['高', '中', '低'],
+        textStyle: {
+            color: 'rgba(204, 204, 204, 0.8)'
+        }
+    },
+    grid: { // 图表位置
+        left: 20,
+        top: 48,
+        right: 20,
+        bottom: 38
+    },
+    yAxis:  {
+        type: 'value'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['读书', '健身', '美食', '金融'],
+        axisTick: {
+            show: false,
+            alignWithLabel: true, // 标签与刻度线位置
+            length: 1
+        },
+        axisLabel: { // 刻度标签设置
+            textStyle: {
+                color: 'rgba(204, 204, 204, 0.8)',
+                fontSize: 12
+            }
+        },
+        axisLine: { // 坐标轴轴线相关设置
+            show: true
+        }
+    },
+    series: [
+        {
+            name: '高',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [320, 302, 301, 334, 390, 330, 320]
+        },
+        {
+            name: '中',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name: '低',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [220, 182, 191, 234, 290, 330, 310]
+        }
+    ]
+};
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart2.setOption(option2);
+</script>
+
+</html>

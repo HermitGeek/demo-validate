@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>11</title>
+    </head>
+    <body>
+        <button type="button" data-id="888">按钮</button>
+    </body>
+    <script>
+        var btn = document.getElementsByTagName('button')[0];
+
+        btn.addEventListener('click', function (e) {
+            console.log(e.target.dataset);  // '888'
+        });
+    </script>
+</html>

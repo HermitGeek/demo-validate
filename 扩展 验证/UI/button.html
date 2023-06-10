@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            height: 100px;
+            background: #ccc;
+            position: relative;
+        }
+
+        .tab-button-container {
+            display: inline-block;
+            background: #fff;
+            border-radius: 4px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow:2px 2px 5px #333333;
+        }
+
+        .tab-button {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-button:first-child::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 16px;
+            background: #ccc;
+            position: absolute;
+            top: 7px;
+            right: -4px;
+        }
+
+        .tab-button.active {
+            color: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="tab-button-container">
+            <span class="tab-button active"
+                  data-id="tab1"
+                  @click="selectTab">
+                走势图
+            </span>
+            <span class="tab-button"
+                  data-id="tab2"
+                  @click="selectTab">
+                图表
+            </span>
+        </div>
+    </div>
+</body>
+</html>

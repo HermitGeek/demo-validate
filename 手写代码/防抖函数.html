@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function throttle(fn, delay) {
+        let timeoutId = null;
+
+        return function(...params) {
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+                fn.apply(this, params)
+            }, delay);
+        }
+    }
+
+
+    let fn = (aaa) => {
+        console.log(aaa, '触发了')
+        console.log(new Date().getTime())
+    }
+
+    fn = throttle(fn, 2000)
+
+    // 试验
+    const id = setInterval(() => {
+        fn('aaaa');
+
+        console.log('setInterval')
+    }, 1000);
+    
+    setTimeout(() => {
+        clearInterval(id)
+
+        console.log(new Date().getTime())
+
+    }, 4000);
+</script>
+</html>
