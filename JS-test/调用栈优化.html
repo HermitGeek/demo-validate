@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 如下 10 个调用栈
+    // function runStack1(n) {
+    //     if (n === 0) {
+    //         console.log('1 结束了');
+    //         return 100;
+    //     }
+    //     console.log(n);
+    //     console.trace()
+    //     return runStack1(n - 2);
+    // }
+    // runStack1(20)
+
+
+    function runStack2(n) {
+        while (true) {
+            if (n === 0) {
+                console.log('2 结束了');
+                console.trace()
+
+                return 100;
+            }
+            
+            n = n - 2;
+        }
+    }
+    runStack2(50)
+</script>
+
+</html>
