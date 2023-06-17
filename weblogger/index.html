@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>测试</button>
+</body>
+<script src="https://h1.static.yximgs.com/udata/pkg/ks-track-platform-new/weblogger/3.10.18-feat.8/log.browser.js"></script>
+<script src="https://h1.static.yximgs.com/udata/pkg/ks-track-platform-new/weblogger/3.10.18-feat.8/plugins/autotrack.js"></script>
+<script src="https://h1.static.yximgs.com/udata/pkg/ks-track-platform-new/weblogger/3.10.18-feat.8/plugins/staylength.js"></script>
+<script>
+    const getCookieItem = function (sKey) {
+        return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    };
+    new Weblog({
+        env: '', // TODO: production test
+        plugins: [
+            new AutoTrack(),
+            new StayLength(),
+        ],
+    }, {
+        product_name: 'spark-web', // TODO: spark-web  yarn-web   flink-web
+        user_id: getCookieItem('kooc-login-key') || '',
+    });
+</script>
+
+</html>
